@@ -1,0 +1,1326 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carla Mathias De Simone | Communication & Archivistique</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --primary-bg: #0f172a;
+            --secondary-bg: #1e293b;
+            --accent-gold: #d4af37;
+            --accent-copper: #b87333;
+            --text-light: #f8fafc;
+            --text-muted: #94a3b8;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, var(--primary-bg) 0%, var(--secondary-bg) 100%);
+            color: var(--text-light);
+            overflow-x: hidden;
+        }
+        
+        .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        /* Animated background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: 
+                radial-gradient(ellipse at 20% 80%, rgba(212, 175, 55, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(184, 115, 51, 0.1) 0%, transparent 50%),
+                linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+        }
+        
+        .floating-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.3;
+            animation: float 20s infinite ease-in-out;
+        }
+        
+        .orb-1 {
+            width: 400px;
+            height: 400px;
+            background: var(--accent-gold);
+            top: -10%;
+            left: -10%;
+            animation-delay: 0s;
+        }
+        
+        .orb-2 {
+            width: 300px;
+            height: 300px;
+            background: var(--accent-copper);
+            bottom: -5%;
+            right: -5%;
+            animation-delay: -10s;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -30px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+        }
+        
+        /* Navigation */
+        .nav-container {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            backdrop-filter: blur(20px);
+            background: rgba(15, 23, 42, 0.8);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link {
+            position: relative;
+            color: var(--text-muted);
+            transition: color 0.3s ease;
+        }
+        
+        .nav-link:hover, .nav-link.active {
+            color: var(--accent-gold);
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-gold);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 100%;
+        }
+        
+        /* Language switcher */
+        .lang-btn {
+            padding: 0.5rem 1rem;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            background: transparent;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.875rem;
+        }
+        
+        .lang-btn:hover, .lang-btn.active {
+            background: var(--accent-gold);
+            color: var(--primary-bg);
+            border-color: var(--accent-gold);
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 2rem;
+            padding-top: 6rem;
+        }
+        
+        .hero-content {
+            text-align: center;
+            max-width: 1000px;
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .profile-container {
+            position: relative;
+            width: 280px;
+            height: 280px;
+            margin: 0 auto 2rem;
+        }
+        
+        .profile-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid var(--accent-gold);
+            box-shadow: 0 0 40px rgba(212, 175, 55, 0.3);
+            transition: all 0.4s ease;
+        }
+        
+        .profile-container:hover .profile-image {
+            transform: scale(1.05);
+            box-shadow: 0 0 60px rgba(212, 175, 55, 0.5);
+        }
+        
+        .profile-ring {
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            border-radius: 50%;
+            animation: pulse 3s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.05); opacity: 0.8; }
+        }
+        
+        .hero-title {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-gold) 0%, var(--accent-copper) 50%, var(--accent-gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+            line-height: 1.1;
+        }
+        
+        .hero-name {
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            font-weight: 300;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+        
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--accent-gold);
+            display: block;
+        }
+        
+        .stat-label {
+            color: var(--text-muted);
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        
+        /* Continents visualization */
+        .continents-map {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 3rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .continent-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+        
+        .continent-badge:hover {
+            background: rgba(212, 175, 55, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        /* Sections */
+        section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 3rem;
+            text-align: center;
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-gold), var(--accent-copper));
+            margin: 1rem auto 0;
+        }
+        
+        /* Skills Grid */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .skill-card {
+            background: rgba(30, 41, 59, 0.6);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-gold), var(--accent-copper));
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+        
+        .skill-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-gold);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        .skill-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .skill-icon {
+            width: 48px;
+            height: 48px;
+            color: var(--accent-gold);
+            margin-bottom: 1rem;
+        }
+        
+        .skill-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--accent-gold);
+        }
+        
+        .skill-list {
+            list-style: none;
+        }
+        
+        .skill-list li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        .skill-list li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--accent-copper);
+        }
+        
+        /* Soft Skills - Style spécial en premier */
+        .soft-skills-hero {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(184, 115, 51, 0.05) 100%);
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            border-radius: 24px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        .soft-skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .soft-skill-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1.5rem;
+            background: rgba(30, 41, 59, 0.6);
+            border-radius: 12px;
+            border-left: 4px solid var(--accent-gold);
+            transition: all 0.3s ease;
+        }
+        
+        .soft-skill-item:hover {
+            background: rgba(30, 41, 59, 0.9);
+            transform: translateX(5px);
+            border-left-width: 6px;
+        }
+        
+        .soft-skill-icon {
+            color: var(--accent-gold);
+            flex-shrink: 0;
+            width: 24px;
+            height: 24px;
+        }
+        
+        /* Software tags */
+        .software-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+        
+        .software-tag {
+            padding: 0.5rem 1rem;
+            background: rgba(212, 175, 55, 0.15);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 8px;
+            font-size: 0.875rem;
+            color: var(--text-light);
+            transition: all 0.3s ease;
+        }
+        
+        .software-tag:hover {
+            background: var(--accent-gold);
+            color: var(--primary-bg);
+            transform: scale(1.05);
+        }
+        
+        /* International Experience */
+        .intl-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .intl-card {
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.8) 0%, rgba(15, 23, 42, 0.9) 100%);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 16px;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .intl-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.2) 0%, transparent 70%);
+        }
+        
+        .country-flag {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        /* Contact Section */
+        .contact-section {
+            text-align: center;
+            background: rgba(30, 41, 59, 0.4);
+            border-radius: 24px;
+            padding: 4rem 2rem;
+            margin-top: 4rem;
+        }
+        
+        .contact-grid {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--accent-gold);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+        }
+        
+        .contact-item:hover {
+            background: rgba(212, 175, 55, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, var(--accent-gold) 0%, var(--accent-copper) 100%);
+            color: var(--primary-bg);
+            font-weight: 600;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+        
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
+            color: var(--text-muted);
+            font-size: 0.875rem;
+        }
+        
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-stats {
+                gap: 1.5rem;
+            }
+            
+            .stat-number {
+                font-size: 2rem;
+            }
+            
+            .skills-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .continents-map {
+                gap: 1rem;
+            }
+            
+            .profile-container {
+                width: 200px;
+                height: 200px;
+            }
+            
+            .contact-grid {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .soft-skills-hero {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Animation -->
+    <div class="bg-animation">
+        <div class="floating-orb orb-1"></div>
+        <div class="floating-orb orb-2"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="nav-container">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex-shrink-0 font-serif text-xl font-bold text-yellow-500">
+                    Carla M.D.S.
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#softskills" class="nav-link" data-key="nav_softskills">Soft Skills</a>
+                    <a href="#archives" class="nav-link" data-key="nav_archives">Archivistique</a>
+                    <a href="#communication" class="nav-link" data-key="nav_communication">Communication</a>
+                    <a href="#international" class="nav-link" data-key="nav_international">International</a>
+                    <a href="#contact" class="nav-link" data-key="nav_contact">Contact</a>
+                </div>
+                <div class="flex space-x-2">
+                    <button class="lang-btn active" onclick="changeLanguage('fr')">FR</button>
+                    <button class="lang-btn" onclick="changeLanguage('en')">EN</button>
+                    <button class="lang-btn" onclick="changeLanguage('pt')">PT</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="profile-container">
+                <div class="profile-ring"></div>
+                <img src="photo_profil.jpg" alt="Carla Mathias De Simone" class="profile-image" id="profile-img">
+            </div>
+            
+            <h1 class="hero-name font-serif">Carla Mathias De Simone</h1>
+            <h2 class="hero-title">Expert en Communication<br>& Archivistique</h2>
+            <p class="hero-subtitle" data-key="hero_subtitle">Plus de 15 ans d'expérience internationale</p>
+            
+            <div class="continents-map">
+                <div class="continent-badge">
+                    <i data-lucide="globe" class="w-5 h-5 text-yellow-500"></i>
+                    <span>Amérique du Nord</span>
+                </div>
+                <div class="continent-badge">
+                    <i data-lucide="globe" class="w-5 h-5 text-yellow-500"></i>
+                    <span>Amérique du Sud</span>
+                </div>
+                <div class="continent-badge">
+                    <i data-lucide="globe" class="w-5 h-5 text-yellow-500"></i>
+                    <span>Europe</span>
+                </div>
+                <div class="continent-badge">
+                    <i data-lucide="globe" class="w-5 h-5 text-yellow-500"></i>
+                    <span>Afrique</span>
+                </div>
+            </div>
+
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number">15+</span>
+                    <span class="stat-label" data-key="years_exp">Années d'expérience</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">4</span>
+                    <span class="stat-label" data-key="continents">Continents</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">3</span>
+                    <span class="stat-label" data-key="languages">Langues</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- COMPÉTENCES TRANSVERSALES EN PREMIER -->
+    <section id="softskills" class="fade-in">
+        <div class="soft-skills-hero">
+            <h2 class="section-title font-serif" data-key="soft_skills_title">Compétences Transversales</h2>
+            <p class="text-center text-gray-400 mb-8 max-w-3xl mx-auto" data-key="soft_skills_intro">
+                Les fondations de mon approche professionnelle, développées à travers 15 ans d'expérience internationale sur 4 continents.
+            </p>
+            
+            <div class="soft-skills-grid">
+                <div class="soft-skill-item">
+                    <i data-lucide="brain" class="soft-skill-icon"></i>
+                    <div>
+                        <h4 class="font-semibold text-yellow-500 mb-1" data-key="synthesis_title">Esprit de Synthèse</h4>
+                        <p class="text-sm text-gray-400" data-key="synthesis_desc">Capacité à structurer des informations complexes de manière claire et accessible.</p>
+                    </div>
+                </div>
+                
+                <div class="soft-skill-item">
+                    <i data-lucide="handshake" class="soft-skill-icon"></i>
+                    <div>
+                        <h4 class="font-semibold text-yellow-500 mb-1" data-key="collab_title">Collaboration</h4>
+                        <p class="text-sm text-gray-400" data-key="collab_desc">Aptitude à travailler avec des équipes multidisciplinaires et interculturelles.</p>
+                    </div>
+                </div>
+                
+                <div class="soft-skill-item">
+                    <i data-lucide="cpu" class="soft-skill-icon"></i>
+                    <div>
+                        <h4 class="font-semibold text-yellow-500 mb-1" data-key="tech_title">Maîtrise Technologique</h4>
+                        <p class="text-sm text-gray-400" data-key="tech_desc">Utilisation d'outils numériques avancés pour la gestion et la diffusion.</p>
+                    </div>
+                </div>
+                
+                <div class="soft-skill-item">
+                    <i data-lucide="lightbulb" class="soft-skill-icon"></i>
+                    <div>
+                        <h4 class="font-semibold text-yellow-500 mb-1" data-key="problem_title">Résolution de Problèmes</h4>
+                        <p class="text-sm text-gray-400" data-key="problem_desc">Capacité à trouver des solutions créatives dans des contextes variés.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ENSUITE : Compétences Professionnelles -->
+    <section id="expertise" class="fade-in">
+        <h2 class="section-title font-serif" data-key="expertise_title">Domaines d'Expertise Professionnelle</h2>
+        <div class="grid md:grid-cols-2 gap-8 mt-8">
+            <div class="skill-card">
+                <i data-lucide="archive" class="skill-icon"></i>
+                <h3 class="skill-title" data-key="archives_title">Archivistique</h3>
+                <p class="text-gray-400 mb-4" data-key="archives_desc">Gestion complète du cycle de vie des documents, de la création à la conservation permanente.</p>
+            </div>
+            <div class="skill-card">
+                <i data-lucide="message-circle" class="skill-icon"></i>
+                <h3 class="skill-title" data-key="comm_title">Communication</h3>
+                <p class="text-gray-400 mb-4" data-key="comm_desc">Stratégie de communication intégrée, relations publiques et gestion de crise.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Archivistique Section -->
+    <section id="archives" class="fade-in">
+        <h2 class="section-title font-serif" data-key="archives_section_title">Compétences en Archivistique</h2>
+        <div class="skills-container">
+            <div class="skill-card">
+                <i data-lucide="clipboard-list" class="skill-icon"></i>
+                <h3 class="skill-title" data-key="planning_title">Planification et Conception</h3>
+                <ul class="skill-list">
+                    <li data-key="planning_1">Définir les politiques de gestion documentaire</li>
+                    <li data-key="planning_2">Élaborer les plans de classification</li>
+                    <li data-key="planning_3">Concevoir les systèmes de repérage</li>
+                </ul>
+            </div>
+            
+            <div class="skill-card">
+                <i data-lucide="filter" class="skill-icon"></i>
+                <h3 class="skill-title" data-key="evaluation_title">Évaluation et Sélection</h3>
+                <ul class="skill-list">
+                    <li data-key="eval_1">Déterminer la valeur des documents</li>
+                    <li data-key="eval_2">Décider de la conservation temporaire ou permanente</li>
+                    <li data-key="eval_3">Gérer l'élimination des documents</li>
+                </ul>
+            </div>
+            
+            <div class="skill-card">
+                <i data-lucide="folder-tree" class="skill-icon"></i>
+                <h3 class="skill-title" data-key="org_title">Organisation et Description</h3>
+                <ul class="skill-list">
+                    <li data-key="org_1">Classer et indexer les documents</li>
+                    <li data-key="org_2">Cataloguer les archives physiques et numériques</li>
+                    <li data-key="org_3">Mettre en place des thésaurus</li>
+                </ul>
+            </div>
+            
+            <div class="skill-card">
+                <i data-lucide="shield-check" class="skill-icon"></i>
+                <h3 class="skill-title" data-key="conservation_title">Conservation et Préservation</h3>
+                <ul class="skill-list">
+                    <li data-key="cons_1">Assurer la sécurité et l'intégrité des documents</li>
+                    <li data-key="cons_2">Gérer les archives électroniques</li>
+                    <li data-key="cons_3">Superviser la numérisation</li>
+                </ul>
+            </div>
+            
+            <div class="skill-card">
+                <i data-lucide="share-2" class="skill-icon"></i>
+                <h3 class="skill-title" data-key="access_title">Diffusion et Accès</h3>
+                <ul class="skill-list">
+                    <li data-key="access_1">Rendre l'information accessible</li>
+                    <li data-key="access_2">Respecter la confidentialité</li>
+                    <li data-key="access_3">Gérer les droits d'accès</li>
+                </ul>
+            </div>
+            
+            <div class="skill-card">
+                <i data-lucide="repeat" class="skill-icon"></i>
+                <h3 class="skill-title" data-key="lifecycle_title">Gestion du Cycle de Vie</h3>
+                <ul class="skill-list">
+                    <li data-key="life_1">Documents actifs et inactifs</li>
+                    <li data-key="life_2">Archivage intermédiaire</li>
+                    <li data-key="life_3">Conservation définitive</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="skill-card mt-8">
+            <i data-lucide="graduation-cap" class="skill-icon"></i>
+            <h3 class="skill-title" data-key="training_title">Formation et Conseil</h3>
+            <p class="text-gray-400" data-key="training_desc">Former le personnel aux procédures de gestion documentaire et accompagner les organisations dans leur transformation numérique.</p>
+        </div>
+    </section>
+
+    <!-- Communication Section -->
+    <section id="communication" class="fade-in">
+        <h2 class="section-title font-serif" data-key="comm_section_title">Compétences en Communication</h2>
+        <div class="skills-container">
+            <div class="skill-card">
+                <i data-lucide="pen-tool" class="skill-icon"></i>
+                <h3 class="skill-title" data-key="content_title">Création et Gestion de Contenu</h3>
+                <ul class="skill-list">
+                    <li data-key="content_1">Rédaction d'articles et communiqués</li>
+                    <li data-key="content_2">Scripts vidéo et multimédia</li>
+                    <li data-key="content_3">Gestion des réseaux sociaux</li>
+                </ul>
+            </div>
+            
+            <div class="skill-card">
+                <i data-lucide="target" class="skill-icon"></i>
+                <h3 class="skill-title" data-key="strategy_title">Stratégie de Communication</h3>
+                <ul class="skill-list">
+                    <li data-key="strat_1">Définir les cibles et messages clés</li>
+                    <li data-key="strat_2">Choisir les canaux appropriés</li>
+                    <li data-key="strat_3">Campagnes digitales et traditionnelles</li>
+                </ul>
+            </div>
+            
+            <div class="skill-card">
+                <i data-lucide="users" class="skill-icon"></i>
+                <h3 class="skill-title" data-key="pr_title">Relations Publiques</h3>
+                <ul class="skill-list">
+                    <li data-key="pr_1">Gestion de l'image de marque</li>
+                    <li data-key="pr_2">Organisation d'événements</li>
+                    <li data-key="pr_3">Relations avec les médias</li>
+                </ul>
+            </div>
+            
+            <div class="skill-card">
+                <i data-lucide="building-2" class="skill-icon"></i>
+                <h3 class="skill-title" data-key="internal_title">Communication Interne</h3>
+                <ul class="skill-list">
+                    <li data-key="int_1">Informer et aligner les employés</li>
+                    <li data-key="int_2">Favoriser la cohésion d'équipe</li>
+                    <li data-key="int_3">Gestion du changement</li>
+                </ul>
+            </div>
+            
+            <div class="skill-card">
+                <i data-lucide="search" class="skill-icon"></i>
+                <h3 class="skill-title" data-key="monitoring_title">Veille et Analyse</h3>
+                <ul class="skill-list">
+                    <li data-key="mon_1">Suivi des tendances</li>
+                    <li data-key="mon_2">Surveillance de l'e-réputation</li>
+                    <li data-key="mon_3">Analyse des performances</li>
+                </ul>
+            </div>
+            
+            <div class="skill-card">
+                <i data-lucide="alert-triangle" class="skill-icon"></i>
+                <h3 class="skill-title" data-key="crisis_title">Gestion de Crise</h3>
+                <ul class="skill-list">
+                    <li data-key="crisis_1">Élaboration de plans de crise</li>
+                    <li data-key="crisis_2">Anticipation des risques</li>
+                    <li data-key="crisis_3">Minimisation des impacts négatifs</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Software Section -->
+    <section class="fade-in">
+        <h2 class="section-title font-serif" data-key="software_title">Logiciels Maîtrisés</h2>
+        <div class="software-grid">
+            <span class="software-tag">Microsoft Office Suite</span>
+            <span class="software-tag">Adobe Creative Suite</span>
+            <span class="software-tag">ArchivesSpace</span>
+            <span class="software-tag">CollectiveAccess</span>
+            <span class="software-tag">Omeka</span>
+            <span class="software-tag">PastPerfect</span>
+            <span class="software-tag">WordPress</span>
+            <span class="software-tag">Hootsuite</span>
+            <span class="software-tag">Google Analytics</span>
+            <span class="software-tag">Canva</span>
+            <span class="software-tag">Mailchimp</span>
+            <span class="software-tag">Photoshop</span>
+            <span class="software-tag">Premiere Pro</span>
+            <span class="software-tag">CMS divers</span>
+        </div>
+    </section>
+
+    <!-- International Experience -->
+    <section id="international" class="fade-in">
+        <h2 class="section-title font-serif" data-key="intl_title">Expérience Internationale</h2>
+        <div class="intl-grid">
+            <div class="intl-card">
+                <div class="country-flag">🇧🇷</div>
+                <h3 class="text-xl font-semibold text-yellow-500 mb-2">Brésil</h3>
+                <p class="text-gray-400 text-sm mb-4" data-key="brazil_desc">Expérience professionnelle en Amérique du Sud, maîtrise du portugais et compréhension des dynamiques culturelles latino-américaines.</p>
+                <div class="flex items-center gap-2 text-sm text-yellow-600">
+                    <i data-lucide="map-pin" class="w-4 h-4"></i>
+                    <span>Amérique du Sud</span>
+                </div>
+            </div>
+            
+            <div class="intl-card">
+                <div class="country-flag">🇨🇦</div>
+                <h3 class="text-xl font-semibold text-yellow-500 mb-2">Canada</h3>
+                <p class="text-gray-400 text-sm mb-4" data-key="canada_desc">Expérience en Amérique du Nord, bilinguisme français-anglais et connaissance des environnements professionnels nord-américains.</p>
+                <div class="flex items-center gap-2 text-sm text-yellow-600">
+                    <i data-lucide="map-pin" class="w-4 h-4"></i>
+                    <span>Amérique du Nord</span>
+                </div>
+            </div>
+            
+            <div class="intl-card">
+                <div class="country-flag">🇧🇯</div>
+                <h3 class="text-xl font-semibold text-yellow-500 mb-2">Bénin</h3>
+                <p class="text-gray-400 text-sm mb-4" data-key="benin_desc">Expérience en Afrique de l'Ouest, adaptation à des contextes de travail variés et compréhension des enjeux du développement.</p>
+                <div class="flex items-center gap-2 text-sm text-yellow-600">
+                    <i data-lucide="map-pin" class="w-4 h-4"></i>
+                    <span>Afrique</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="mt-12 grid md:grid-cols-3 gap-6">
+            <div class="skill-card text-center">
+                <i data-lucide="globe-2" class="skill-icon mx-auto"></i>
+                <h4 class="skill-title" data-key="adaptation_title">Adaptation Culturelle</h4>
+                <p class="text-sm text-gray-400" data-key="adaptation_desc">Capacité à travailler dans des environnements variés et à comprendre les codes locaux.</p>
+            </div>
+            
+            <div class="skill-card text-center">
+                <i data-lucide="languages" class="skill-icon mx-auto"></i>
+                <h4 class="skill-title" data-key="intercultural_title">Communication Interculturelle</h4>
+                <p class="text-sm text-gray-400" data-key="intercultural_desc">Communication efficace en français, anglais et portugais.</p>
+            </div>
+            
+            <div class="skill-card text-center">
+                <i data-lucide="settings" class="skill-icon mx-auto"></i>
+                <h4 class="skill-title" data-key="versatility_title">Polyvalence</h4>
+                <p class="text-sm text-gray-400" data-key="versatility_desc">Adaptation à différents systèmes de gestion documentaire et muséale.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section fade-in">
+        <h2 class="text-3xl font-serif font-bold mb-4" data-key="contact_title">Travaillons Ensemble</h2>
+        <p class="text-gray-400 max-w-2xl mx-auto mb-8" data-key="contact_desc">Expertise internationale en communication et archivistique à votre service pour vos projets les plus ambitieux.</p>
+        
+        <div class="contact-grid">
+            <a href="mailto:brabeca@gmail.com" class="contact-item">
+                <i data-lucide="mail" class="w-5 h-5"></i>
+                <span>brabeca@gmail.com</span>
+            </a>
+            <a href="https://www.linkedin.com/in/carla-mathias-desimone/" target="_blank" class="contact-item">
+                <i data-lucide="linkedin" class="w-5 h-5"></i>
+                <span>LinkedIn</span>
+            </a>
+        </div>
+        
+        <a href="mailto:brabeca@gmail.com" class="cta-button">
+            <span data-key="cta_button">Me Contacter</span>
+            <i data-lucide="arrow-right" class="w-5 h-5"></i>
+        </a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Carla Mathias De Simone. <span data-key="rights">Tous droits réservés.</span></p>
+        <p class="mt-2 text-sm" data-key="tagline">Communication & Archivistique Internationale</p>
+    </footer>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Translations
+        const translations = {
+            fr: {
+                nav_softskills: "Soft Skills",
+                nav_archives: "Archivistique",
+                nav_communication: "Communication",
+                nav_international: "International",
+                nav_contact: "Contact",
+                hero_subtitle: "Plus de 15 ans d'expérience internationale",
+                years_exp: "Années d'expérience",
+                continents: "Continents",
+                languages: "Langues",
+                soft_skills_title: "Compétences Transversales",
+                soft_skills_intro: "Les fondations de mon approche professionnelle, développées à travers 15 ans d'expérience internationale sur 4 continents.",
+                synthesis_title: "Esprit de Synthèse",
+                synthesis_desc: "Capacité à structurer des informations complexes de manière claire et accessible.",
+                collab_title: "Collaboration",
+                collab_desc: "Aptitude à travailler avec des équipes multidisciplinaires et interculturelles.",
+                tech_title: "Maîtrise Technologique",
+                tech_desc: "Utilisation d'outils numériques avancés pour la gestion et la diffusion.",
+                problem_title: "Résolution de Problèmes",
+                problem_desc: "Capacité à trouver des solutions créatives dans des contextes variés.",
+                expertise_title: "Domaines d'Expertise Professionnelle",
+                archives_title: "Archivistique",
+                archives_desc: "Gestion complète du cycle de vie des documents, de la création à la conservation permanente.",
+                comm_title: "Communication",
+                comm_desc: "Stratégie de communication intégrée, relations publiques et gestion de crise.",
+                archives_section_title: "Compétences en Archivistique",
+                planning_title: "Planification et Conception",
+                planning_1: "Définir les politiques de gestion documentaire",
+                planning_2: "Élaborer les plans de classification",
+                planning_3: "Concevoir les systèmes de repérage",
+                evaluation_title: "Évaluation et Sélection",
+                eval_1: "Déterminer la valeur des documents",
+                eval_2: "Décider de la conservation temporaire ou permanente",
+                eval_3: "Gérer l'élimination des documents",
+                org_title: "Organisation et Description",
+                org_1: "Classer et indexer les documents",
+                org_2: "Cataloguer les archives physiques et numériques",
+                org_3: "Mettre en place des thésaurus",
+                conservation_title: "Conservation et Préservation",
+                cons_1: "Assurer la sécurité et l'intégrité des documents",
+                cons_2: "Gérer les archives électroniques",
+                cons_3: "Superviser la numérisation",
+                access_title: "Diffusion et Accès",
+                access_1: "Rendre l'information accessible",
+                access_2: "Respecter la confidentialité",
+                access_3: "Gérer les droits d'accès",
+                lifecycle_title: "Gestion du Cycle de Vie",
+                life_1: "Documents actifs et inactifs",
+                life_2: "Archivage intermédiaire",
+                life_3: "Conservation définitive",
+                training_title: "Formation et Conseil",
+                training_desc: "Former le personnel aux procédures de gestion documentaire et accompagner les organisations dans leur transformation numérique.",
+                comm_section_title: "Compétences en Communication",
+                content_title: "Création et Gestion de Contenu",
+                content_1: "Rédaction d'articles et communiqués",
+                content_2: "Scripts vidéo et multimédia",
+                content_3: "Gestion des réseaux sociaux",
+                strategy_title: "Stratégie de Communication",
+                strat_1: "Définir les cibles et messages clés",
+                strat_2: "Choisir les canaux appropriés",
+                strat_3: "Campagnes digitales et traditionnelles",
+                pr_title: "Relations Publiques",
+                pr_1: "Gestion de l'image de marque",
+                pr_2: "Organisation d'événements",
+                pr_3: "Relations avec les médias",
+                internal_title: "Communication Interne",
+                int_1: "Informer et aligner les employés",
+                int_2: "Favoriser la cohésion d'équipe",
+                int_3: "Gestion du changement",
+                monitoring_title: "Veille et Analyse",
+                mon_1: "Suivi des tendances",
+                mon_2: "Surveillance de l'e-réputation",
+                mon_3: "Analyse des performances",
+                crisis_title: "Gestion de Crise",
+                crisis_1: "Élaboration de plans de crise",
+                crisis_2: "Anticipation des risques",
+                crisis_3: "Minimisation des impacts négatifs",
+                software_title: "Logiciels Maîtrisés",
+                intl_title: "Expérience Internationale",
+                brazil_desc: "Expérience professionnelle en Amérique du Sud, maîtrise du portugais et compréhension des dynamiques culturelles latino-américaines.",
+                canada_desc: "Expérience en Amérique du Nord, bilinguisme français-anglais et connaissance des environnements professionnels nord-américains.",
+                benin_desc: "Expérience en Afrique de l'Ouest, adaptation à des contextes de travail variés et compréhension des enjeux du développement.",
+                adaptation_title: "Adaptation Culturelle",
+                adaptation_desc: "Capacité à travailler dans des environnements variés et à comprendre les codes locaux.",
+                intercultural_title: "Communication Interculturelle",
+                intercultural_desc: "Communication efficace en français, anglais et portugais.",
+                versatility_title: "Polyvalence",
+                versatility_desc: "Adaptation à différents systèmes de gestion documentaire et muséale.",
+                contact_title: "Travaillons Ensemble",
+                contact_desc: "Expertise internationale en communication et archivistique à votre service pour vos projets les plus ambitieux.",
+                cta_button: "Me Contacter",
+                rights: "Tous droits réservés.",
+                tagline: "Communication & Archivistique Internationale"
+            },
+            en: {
+                nav_softskills: "Soft Skills",
+                nav_archives: "Archives",
+                nav_communication: "Communication",
+                nav_international: "International",
+                nav_contact: "Contact",
+                hero_subtitle: "Over 15 years of international experience",
+                years_exp: "Years of Experience",
+                continents: "Continents",
+                languages: "Languages",
+                soft_skills_title: "Transversal Skills",
+                soft_skills_intro: "The foundations of my professional approach, developed through 15 years of international experience across 4 continents.",
+                synthesis_title: "Analytical Thinking",
+                synthesis_desc: "Ability to structure complex information in a clear and accessible manner.",
+                collab_title: "Collaboration",
+                collab_desc: "Ability to work with multidisciplinary and intercultural teams.",
+                tech_title: "Technical Proficiency",
+                tech_desc: "Use of advanced digital tools for management and dissemination.",
+                problem_title: "Problem Solving",
+                problem_desc: "Ability to find creative solutions in various contexts.",
+                expertise_title: "Professional Expertise Areas",
+                archives_title: "Archival Science",
+                archives_desc: "Complete document lifecycle management, from creation to permanent preservation.",
+                comm_title: "Communication",
+                comm_desc: "Integrated communication strategy, public relations and crisis management.",
+                archives_section_title: "Archival Skills",
+                planning_title: "Planning and Design",
+                planning_1: "Define document management policies",
+                planning_2: "Develop classification plans",
+                planning_3: "Design retrieval systems",
+                evaluation_title: "Evaluation and Selection",
+                eval_1: "Determine document value",
+                eval_2: "Decide on temporary or permanent retention",
+                eval_3: "Manage document disposal",
+                org_title: "Organization and Description",
+                org_1: "Classify and index documents",
+                org_2: "Catalog physical and digital archives",
+                org_3: "Implement thesauri",
+                conservation_title: "Preservation and Conservation",
+                cons_1: "Ensure document security and integrity",
+                cons_2: "Manage electronic records",
+                cons_3: "Oversee digitization",
+                access_title: "Dissemination and Access",
+                access_1: "Make information accessible",
+                access_2: "Maintain confidentiality",
+                access_3: "Manage access rights",
+                lifecycle_title: "Lifecycle Management",
+                life_1: "Active and inactive records",
+                life_2: "Intermediate archiving",
+                life_3: "Permanent retention",
+                training_title: "Training and Consulting",
+                training_desc: "Train staff in records management procedures and support organizations in their digital transformation.",
+                comm_section_title: "Communication Skills",
+                content_title: "Content Creation and Management",
+                content_1: "Writing articles and press releases",
+                content_2: "Video and multimedia scripts",
+                content_3: "Social media management",
+                strategy_title: "Communication Strategy",
+                strat_1: "Define targets and key messages",
+                strat_2: "Choose appropriate channels",
+                strat_3: "Digital and traditional campaigns",
+                pr_title: "Public Relations",
+                pr_1: "Brand image management",
+                pr_2: "Event organization",
+                pr_3: "Media relations",
+                internal_title: "Internal Communication",
+                int_1: "Inform and align employees",
+                int_2: "Foster team cohesion",
+                int_3: "Change management",
+                monitoring_title: "Monitoring and Analysis",
+                mon_1: "Trend tracking",
+                mon_2: "E-reputation monitoring",
+                mon_3: "Performance analysis",
+                crisis_title: "Crisis Management",
+                crisis_1: "Crisis plan development",
+                crisis_2: "Risk anticipation",
+                crisis_3: "Minimize negative impacts",
+                software_title: "Software Proficiency",
+                intl_title: "International Experience",
+                brazil_desc: "Professional experience in South America, Portuguese fluency and understanding of Latin American cultural dynamics.",
+                canada_desc: "Experience in North America, French-English bilingualism and knowledge of North American professional environments.",
+                benin_desc: "Experience in West Africa, adaptation to diverse work contexts and understanding of development issues.",
+                adaptation_title: "Cultural Adaptation",
+                adaptation_desc: "Ability to work in diverse environments and understand local codes.",
+                intercultural_title: "Intercultural Communication",
+                intercultural_desc: "Effective communication in French, English and Portuguese.",
+                versatility_title: "Versatility",
+                versatility_desc: "Adaptation to different archival and museum management systems.",
+                contact_title: "Let's Work Together",
+                contact_desc: "International expertise in communication and archival science at your service for your most ambitious projects.",
+                cta_button: "Contact Me",
+                rights: "All rights reserved.",
+                tagline: "International Communication & Archival Science"
+            },
+            pt: {
+                nav_softskills: "Soft Skills",
+                nav_archives: "Arquivística",
+                nav_communication: "Comunicação",
+                nav_international: "Internacional",
+                nav_contact: "Contato",
+                hero_subtitle: "Mais de 15 anos de experiência internacional",
+                years_exp: "Anos de Experiência",
+                continents: "Continentes",
+                languages: "Idiomas",
+                soft_skills_title: "Competências Transversais",
+                soft_skills_intro: "Os fundamentos da minha abordagem profissional, desenvolvidos ao longo de 15 anos de experiência internacional em 4 continentes.",
+                synthesis_title: "Espírito de Síntese",
+                synthesis_desc: "Capacidade de estruturar informações complexas de forma clara e acessível.",
+                collab_title: "Colaboração",
+                collab_desc: "Aptidão para trabalhar com equipes multidisciplinares e interculturais.",
+                tech_title: "Domínio Tecnológico",
+                tech_desc: "Uso de ferramentas digitais avançadas para gestão e disseminação.",
+                problem_title: "Resolução de Problemas",
+                problem_desc: "Capacidade de encontrar soluções criativas em contextos variados.",
+                expertise_title: "Áreas de Especialidade Profissional",
+                archives_title: "Arquivística",
+                archives_desc: "Gestão completa do ciclo de vida dos documentos, da criação à preservação permanente.",
+                comm_title: "Comunicação",
+                comm_desc: "Estratégia de comunicação integrada, relações públicas e gestão de crises.",
+                archives_section_title: "Competências em Arquivística",
+                planning_title: "Planejamento e Concepção",
+                planning_1: "Definir políticas de gestão documental",
+                planning_2: "Elaborar planos de classificação",
+                planning_3: "Conceber sistemas de recuperação",
+                evaluation_title: "Avaliação e Seleção",
+                eval_1: "Determinar o valor dos documentos",
+                eval_2: "Decidir sobre a conservação temporária ou permanente",
+                eval_3: "Gerenciar a eliminação de documentos",
+                org_title: "Organização e Descrição",
+                org_1: "Classificar e indexar documentos",
+                org_2: "Catalogar arquivos físicos e digitais",
+                org_3: "Implementar tesauros",
+                conservation_title: "Conservação e Preservação",
+                cons_1: "Garantir a segurança e integridade dos documentos",
+                cons_2: "Gerenciar arquivos eletrônicos",
+                cons_3: "Supervisionar a digitalização",
+                access_title: "Difusão e Acesso",
+                access_1: "Tornar a informação acessível",
+                access_2: "Manter a confidencialidade",
+                access_3: "Gerenciar direitos de acesso",
+                lifecycle_title: "Gestão do Ciclo de Vida",
+                life_1: "Documentos ativos e inativos",
+                life_2: "Arquivamento intermediário",
+                life_3: "Conservação definitiva",
+                training_title: "Formação e Consultoria",
+                training_desc: "Treinar o pessoal nos procedimentos de gestão documental e apoiar as organizações em sua transformação digital.",
+                comm_section_title: "Competências em Comunicação",
+                content_title: "Criação e Gestão de Conteúdo",
+                content_1: "Redação de artigos e comunicados",
+                content_2: "Roteiros de vídeo e multimídia",
+                content_3: "Gestão de redes sociais",
+                strategy_title: "Estratégia de Comunicação",
+                strat_1: "Definir públicos-alvo e mensagens-chave",
+                strat_2: "Escolher canais apropriados",
+                strat_3: "Campanhas digitais e tradicionais",
+                pr_title: "Relações Públicas",
+                pr_1: "Gestão da imagem da marca",
+                pr_2: "Organização de eventos",
+                pr_3: "Relações com a mídia",
+                internal_title: "Comunicação Interna",
+                int_1: "Informar e alinhar funcionários",
+                int_2: "Fomentar a coesão da equipe",
+                int_3: "Gestão de mudanças",
+                monitoring_title: "Monitoramento e Análise",
+                mon_1: "Acompanhamento de tendências",
+                mon_2: "Monitoramento de e-reputação",
+                mon_3: "Análise de desempenho",
+                crisis_title: "Gestão de Crises",
+                crisis_1: "Desenvolvimento de planos de crise",
+                crisis_2: "Antecipação de riscos",
+                crisis_3: "Minimização de impactos negativos",
+                software_title: "Softwares Dominados",
+                intl_title: "Experiência Internacional",
+                brazil_desc: "Experiência profissional na América do Sul, domínio do português e compreensão das dinâmicas culturais latino-americanas.",
+                canada_desc: "Experiência na América do Norte, bilinguismo francês-inglês e conhecimento dos ambientes profissionais norte-americanos.",
+                benin_desc: "Experiência na África Ocidental, adaptação a contextos de trabalho variados e compreensão dos desafios do desenvolvimento.",
+                adaptation_title: "Adaptação Cultural",
+                adaptation_desc: "Capacidade de trabalhar em ambientes variados e compreender os códigos locais.",
+                intercultural_title: "Comunicação Intercultural",
+                intercultural_desc: "Comunicação eficaz em francês, inglês e português.",
+                versatility_title: "Polivalência",
+                versatility_desc: "Adaptação a diferentes sistemas de gestão documental e museológica.",
+                contact_title: "Vamos Trabalhar Juntos",
+                contact_desc: "Especialização internacional em comunicação e arquivística à sua disposição para seus projetos mais ambiciosos.",
+                cta_button: "Entre em Contato",
+                rights: "Todos os direitos reservados.",
+                tagline: "Comunicação & Arquivística Internacional"
+            }
+        };
+
+        let currentLang = 'fr';
+
+        function changeLanguage(lang) {
+            currentLang = lang;
+            
+            // Update buttons
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if(btn.textContent.toLowerCase().includes(lang)) {
+                    btn.classList.add('active');
+                }
+            });
+            
+            // Update content
+            document.querySelectorAll('[data-key]').forEach(element => {
+                const key = element.getAttribute('data-key');
+                if(translations[lang][key]) {
+                    element.textContent = translations[lang][key];
+                }
+            });
+            
+            // Update HTML lang attribute
+            document.documentElement.lang = lang;
+        }
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if(target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Active nav link on scroll
+        window.addEventListener('scroll', () => {
+            let current = '';
+            document.querySelectorAll('section').forEach(section => {
+                const sectionTop = section.offsetTop;
+                if(scrollY >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+                if(link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
