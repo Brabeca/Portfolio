@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Visuels | Carla Mathias De Simone</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --primary-bg: #0f172a;
+            --secondary-bg: #1e293b;
+            --accent-gold: #d4af37;
+            --accent-copper: #b87333;
+            --text-light: #f8fafc;
+            --text-muted: #94a3b8;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, var(--primary-bg) 0%, var(--secondary-bg) 100%);
+            color: var(--text-light);
+            min-height: 100vh;
+        }
+        
+        .font-serif { font-family: 'Playfair Display', serif; }
+        
+        .nav-container {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            backdrop-filter: blur(20px);
+            background: rgba(15, 23, 42, 0.8);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+        }
+        
+        .nav-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .nav-link:hover { color: var(--accent-gold); }
+        
+        .pdf-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .pdf-card {
+            background: rgba(30, 41, 59, 0.6);
+            border: 2px solid rgba(212, 175, 55, 0.2);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: var(--text-light);
+            display: block;
+        }
+        
+        .pdf-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-gold);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
+        }
+        
+        .pdf-icon {
+            width: 64px;
+            height: 64px;
+            color: var(--accent-gold);
+            margin: 0 auto 1rem;
+        }
+        
+        .pdf-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--accent-gold);
+            margin-bottom: 0.5rem;
+        }
+        
+        .pdf-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+        
+        .pdf-meta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(212, 175, 55, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            color: var(--accent-gold);
+        }
+        
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--accent-gold);
+            text-decoration: none;
+            margin: 2rem;
+            transition: all 0.3s;
+        }
+        
+        .back-btn:hover { transform: translateX(-5px); }
+        
+        .preview-thumb {
+            width: 100%;
+            height: 200px;
+            background: rgba(15, 23, 42, 0.8);
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(212, 175, 55, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav-container">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="index.html" class="font-serif text-xl font-bold text-yellow-500">Carla M.D.S.</a>
+            <div class="flex gap-6">
+                <a href="index.html" class="nav-link">Accueil</a>
+                <a href="portfolio-photos.html" class="nav-link">Photos</a>
+                <a href="portfolio-visuels.html" class="nav-link" style="color: var(--accent-gold)">Visuels</a>
+                <a href="portfolio-videos.html" class="nav-link">Vidéos</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contenu -->
+    <div style="padding-top: 80px;">
+        <a href="index.html" class="back-btn">
+            <i data-lucide="arrow-left"></i>
+            Retour à l'accueil
+        </a>
+        
+        <h1 class="text-4xl font-serif text-center mb-2" style="color: var(--accent-gold)">Créations Visuelles</h1>
+        <p class="text-center text-gray-400 mb-8">Design graphique, brochures et documents PDF</p>
+        
+        <div class="pdf-grid">
+            <!-- PDF 1 -->
+            <a href="documents/visuel1.pdf" target="_blank" class="pdf-card">
+                <div class="preview-thumb">
+                    <i data-lucide="file-text" style="width: 48px; height: 48px; color: var(--accent-gold);"></i>
+                </div>
+                <h3 class="pdf-title">Nom du document</h3>
+                <p class="pdf-desc">Description courte du projet (brochure, affiche, rapport...)</p>
+                <span class="pdf-meta">
+                    <i data-lucide="download" style="width: 16px; height: 16px;"></i>
+                    Ouvrir le PDF
+                </span>
+            </a>
+            
+            <!-- PDF 2 -->
+            <a href="documents/visuel2.pdf" target="_blank" class="pdf-card">
+                <div class="preview-thumb">
+                    <i data-lucide="file-text" style="width: 48px; height: 48px; color: var(--accent-gold);"></i>
+                </div>
+                <h3 class="pdf-title">Nom du document</h3>
+                <p class="pdf-desc">Description du projet</p>
+                <span class="pdf-meta">
+                    <i data-lucide="download" style="width: 16px; height: 16px;"></i>
+                    Ouvrir le PDF
+                </span>
+            </a>
+            
+            <!-- PDF 3 -->
+            <a href="documents/visuel3.pdf" target="_blank" class="pdf-card">
+                <div class="preview-thumb">
+                    <i data-lucide="file-text" style="width: 48px; height: 48px; color: var(--accent-gold);"></i>
+                </div>
+                <h3 class="pdf-title">Nom du document</h3>
+                <p class="pdf-desc">Description du projet</p>
+                <span class="pdf-meta">
+                    <i data-lucide="download" style="width: 16px; height: 16px;"></i>
+                    Ouvrir le PDF
+                </span>
+            </a>
+            
+            <!-- Ajoutez plus de PDF ici -->
+        </div>
+    </div>
+
+    <script>lucide.createIcons();</script>
+</body>
+</html>

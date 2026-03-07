@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Photos | Carla Mathias De Simone</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* Copiez les mêmes styles que index.html */
+        :root {
+            --primary-bg: #0f172a;
+            --secondary-bg: #1e293b;
+            --accent-gold: #d4af37;
+            --accent-copper: #b87333;
+            --text-light: #f8fafc;
+            --text-muted: #94a3b8;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, var(--primary-bg) 0%, var(--secondary-bg) 100%);
+            color: var(--text-light);
+            min-height: 100vh;
+        }
+        
+        .font-serif { font-family: 'Playfair Display', serif; }
+        
+        .nav-container {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            backdrop-filter: blur(20px);
+            background: rgba(15, 23, 42, 0.8);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+        }
+        
+        .nav-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .nav-link:hover { color: var(--accent-gold); }
+        
+        /* GALERIE PHOTOS */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            padding: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            border: 2px solid rgba(212, 175, 55, 0.2);
+            transition: all 0.3s ease;
+            aspect-ratio: 4/3;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.02);
+            border-color: var(--accent-gold);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(15, 23, 42, 0.9));
+            padding: 1.5rem 1rem 1rem;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-item:hover .gallery-caption {
+            transform: translateY(0);
+        }
+        
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--accent-gold);
+            text-decoration: none;
+            margin: 2rem;
+            transition: all 0.3s;
+        }
+        
+        .back-btn:hover { transform: translateX(-5px); }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav-container">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="index.html" class="font-serif text-xl font-bold text-yellow-500">Carla M.D.S.</a>
+            <div class="flex gap-6">
+                <a href="index.html" class="nav-link">Accueil</a>
+                <a href="portfolio-photos.html" class="nav-link" style="color: var(--accent-gold)">Photos</a>
+                <a href="portfolio-visuels.html" class="nav-link">Visuels</a>
+                <a href="portfolio-videos.html" class="nav-link">Vidéos</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contenu -->
+    <div style="padding-top: 80px;">
+        <a href="index.html" class="back-btn">
+            <i data-lucide="arrow-left"></i>
+            Retour à l'accueil
+        </a>
+        
+        <h1 class="text-4xl font-serif text-center mb-2" style="color: var(--accent-gold)">Portfolio Photographie</h1>
+        <p class="text-center text-gray-400 mb-8">Sélection de mes travaux photographiques</p>
+        
+        <div class="gallery">
+            <!-- Photo 1 -->
+            <div class="gallery-item">
+                <img src="images/photo1.jpg" alt="Description photo 1">
+                <div class="gallery-caption">
+                    <h3 class="text-yellow-500 font-semibold">Titre de la photo</h3>
+                    <p class="text-sm text-gray-300">Description courte</p>
+                </div>
+            </div>
+            
+            <!-- Photo 2 -->
+            <div class="gallery-item">
+                <img src="images/photo2.jpg" alt="Description photo 2">
+                <div class="gallery-caption">
+                    <h3 class="text-yellow-500 font-semibold">Titre de la photo</h3>
+                    <p class="text-sm text-gray-300">Description courte</p>
+                </div>
+            </div>
+            
+            <!-- Photo 3 -->
+            <div class="gallery-item">
+                <img src="images/photo3.jpg" alt="Description photo 3">
+                <div class="gallery-caption">
+                    <h3 class="text-yellow-500 font-semibold">Titre de la photo</h3>
+                    <p class="text-sm text-gray-300">Description courte</p>
+                </div>
+            </div>
+            
+            <!-- Ajoutez plus de photos ici -->
+        </div>
+    </div>
+
+    <script>lucide.createIcons();</script>
+</body>
+</html>
