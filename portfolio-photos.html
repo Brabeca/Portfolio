@@ -267,20 +267,8 @@
         // LISTE MANUELLE DE VOS PHOTOS
         // MODIFIEZ CETTE PARTIE AVEC VOS VRAIES PHOTOS
         // ==========================================
-        
-        const portfolioPhotos = [
-            // Exemple : remplacez par vos vrais noms de fichiers
-            // { src: "images/nom-de-votre-photo.jpg", title: "Description", category: "Catégorie" },
-            
-            { src: "images/archives_classement_benin.jpg", title: "Classement archives Bénin", category: "Archives" },
-            { src: "images/communication_campagne_2024.jpg", title: "Campagne communication 2024", category: "Communication" },
-            { src: "images/mission_terrain_benin.jpg", title: "Mission terrain Bénin", category: "Mission" },
-            { src: "images/atelier_formation_docs.jpg", title: "Atelier formation gestion docs", category: "Formation" },
-            { src: "images/evenement_vernissage.jpg", title: "Vernissage exposition", category: "Événement" }
-            
-            // AJOUTEZ D'AUTRES PHOTOS ICI EN COPIANT LE FORMAT CI-DESSUS
-        ];
-        const portfolioPhotos = [
+
+const portfolioPhotos = [
     { src: "images/33216862-6c4b-4826-b117-ed6480399095.jpg", title: "Documentation 1", category: "Documentation" },
     { src: "images/444021af-a7f5-4dc7-8a4e-dc5073318569.jpg", title: "Documentation 2", category: "Documentation" },
     { src: "images/IMG_2555.JPG", title: "Documentation 3", category: "Documentation" },
@@ -298,88 +286,88 @@
     { src: "images/f3cadf61-4e6e-4067-a5b4-f35635a4090c.jpg", title: "Documentation 15", category: "Documentation" }
 ];
 
-        // ==========================================
-        // NE RIEN TOUCHER EN DESSOUS
-        // ==========================================
+// ==========================================
+// NE RIEN TOUCHER EN DESSOUS
+// ==========================================
+
+let currentIndex = 0;
+
+// Initialisation
+document.addEventListener('DOMContentLoaded', () => {
+    lucide.createIcons();
+    initGallery();
+});
+
+function initGallery() {
+    const gallery = document.getElementById('gallery');
+    
+    if (portfolioPhotos.length === 0) {
+        gallery.innerHTML = '<div class="gallery-empty">Aucune photo. Ajoutez des photos dans le tableau portfolioPhotos</div>';
+        return;
+    }
+    
+    gallery.innerHTML = '';
+    
+    portfolioPhotos.forEach((photo, index) => {
+        const item = document.createElement('div');
+        item.className = 'gallery-item';
+        item.onclick = () => openLightbox(index);
         
-        let currentIndex = 0;
+        item.innerHTML = `
+            <img src="${photo.src}" alt="${photo.title}" loading="lazy" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\\'padding:2rem;text-align:center;color:var(--text-muted)\\'>Image non trouvée:<br>${photo.src}</div>'">
+            <div class="gallery-caption">
+                <span class="gallery-category">${photo.category}</span>
+                <div class="gallery-title">${photo.title}</div>
+            </div>
+        `;
         
-        // Initialisation
-        document.addEventListener('DOMContentLoaded', () => {
-            lucide.createIcons();
-            initGallery();
-        });
-        
-        function initGallery() {
-            const gallery = document.getElementById('gallery');
-            
-            if (portfolioPhotos.length === 0) {
-                gallery.innerHTML = '<div class="gallery-empty">Aucune photo. Ajoutez des photos dans le tableau portfolioPhotos (ligne 230)</div>';
-                return;
-            }
-            
-            gallery.innerHTML = '';
-            
-            portfolioPhotos.forEach((photo, index) => {
-                const item = document.createElement('div');
-                item.className = 'gallery-item';
-                item.onclick = () => openLightbox(index);
-                
-                item.innerHTML = `
-                    <img src="${photo.src}" alt="${photo.title}" loading="lazy" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\\'padding:2rem;text-align:center;color:var(--text-muted)\\'>Image non trouvée:<br>${photo.src}</div>'">
-                    <div class="gallery-caption">
-                        <span class="gallery-category">${photo.category}</span>
-                        <div class="gallery-title">${photo.title}</div>
-                    </div>
-                `;
-                
-                gallery.appendChild(item);
-            });
-        }
-        
-        // Lightbox
-        function openLightbox(index) {
-            currentIndex = index;
-            updateLightbox();
-            document.getElementById('lightbox').classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-        
-        function closeLightbox() {
-            document.getElementById('lightbox').classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-        
-        function navigateLightbox(direction) {
-            currentIndex += direction;
-            if (currentIndex >= portfolioPhotos.length) currentIndex = 0;
-            if (currentIndex < 0) currentIndex = portfolioPhotos.length - 1;
-            updateLightbox();
-        }
-        
-        function updateLightbox() {
-            const photo = portfolioPhotos[currentIndex];
-            document.getElementById('lightbox-img').src = photo.src;
-            document.getElementById('lightbox-caption').innerHTML = `
-                <div style="color: var(--accent-gold); margin-bottom: 0.5rem;">${photo.category}</div>
-                <strong style="color: var(--text-light);">${photo.title}</strong>
-            `;
-        }
-        
-        // Clavier
-        document.addEventListener('keydown', (e) => {
-            const lightbox = document.getElementById('lightbox');
-            if (lightbox.classList.contains('active')) {
-                if (e.key === 'Escape') closeLightbox();
-                if (e.key === 'ArrowLeft') navigateLightbox(-1);
-                if (e.key === 'ArrowRight') navigateLightbox(1);
-            }
-        });
-        
-        // Fermer en cliquant hors image
-        document.getElementById('lightbox').addEventListener('click', (e) => {
-            if (e.target.id === 'lightbox') closeLightbox();
-        });
+        gallery.appendChild(item);
+    });
+}
+
+// Lightbox
+function openLightbox(index) {
+    currentIndex = index;
+    updateLightbox();
+    document.getElementById('lightbox').classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('active');
+    document.body.style.overflow = 'auto';
+}
+
+function navigateLightbox(direction) {
+    currentIndex += direction;
+    if (currentIndex >= portfolioPhotos.length) currentIndex = 0;
+    if (currentIndex < 0) currentIndex = portfolioPhotos.length - 1;
+    updateLightbox();
+}
+
+function updateLightbox() {
+    const photo = portfolioPhotos[currentIndex];
+    document.getElementById('lightbox-img').src = photo.src;
+    document.getElementById('lightbox-caption').innerHTML = `
+        <div style="color: var(--accent-gold); margin-bottom: 0.5rem;">${photo.category}</div>
+        <strong style="color: var(--text-light);">${photo.title}</strong>
+    `;
+}
+
+// Clavier
+document.addEventListener('keydown', (e) => {
+    const lightbox = document.getElementById('lightbox');
+    if (lightbox.classList.contains('active')) {
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowLeft') navigateLightbox(-1);
+        if (e.key === 'ArrowRight') navigateLightbox(1);
+    }
+});
+
+// Fermer en cliquant hors image
+document.getElementById('lightbox').addEventListener('click', (e) => {
+    if (e.target.id === 'lightbox') closeLightbox();
+});
     </script>
 </body>
 </html>
