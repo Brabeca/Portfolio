@@ -1,0 +1,30 @@
+name: Update Gallery
+
+on:
+  push:
+    paths:
+      - 'images/**'
+      - 'photos/**'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      
+      - name: Generate gallery data
+        run: node generate-gallery.js
+      
+      - name: Commit and push
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Auto-update photo gallery"
+          file_pattern: "photos-data.js"
