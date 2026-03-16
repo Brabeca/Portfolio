@@ -161,10 +161,6 @@
             display: block;
         }
         
-        .dropdown:hover .nav-link {
-            color: var(--accent-gold);
-        }
-        
         /* Language switcher */
         .lang-btn {
             padding: 0.5rem 1rem;
@@ -210,7 +206,7 @@
             }
         }
         
-        /* Photo de profil - CORRECTION STABILITÉ */
+        /* Photo de profil */
         .profile-container {
             position: relative;
             width: 280px;
@@ -229,19 +225,6 @@
             transition: all 0.4s ease;
             display: block;
             background: linear-gradient(135deg, var(--secondary-bg) 0%, var(--primary-bg) 100%);
-        }
-        
-        /* Fallback si l'image ne charge pas */
-        .profile-image::before {
-            content: 'CM';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 4rem;
-            font-weight: 700;
-            color: var(--accent-gold);
-            font-family: 'Playfair Display', serif;
         }
         
         .profile-container:hover .profile-image {
@@ -266,7 +249,6 @@
             50% { transform: scale(1.05); opacity: 0.8; }
         }
         
-        /* Skeleton loading pour la photo */
         .profile-skeleton {
             position: absolute;
             top: 0;
@@ -310,13 +292,6 @@
             font-weight: 700;
         }
         
-        .hero-subtitle {
-            font-size: 1.25rem;
-            color: var(--text-muted);
-            margin-bottom: 2rem;
-            font-weight: 300;
-        }
-        
         .hero-cta-top {
             margin: 2rem 0;
         }
@@ -347,7 +322,7 @@
             letter-spacing: 0.1em;
         }
         
-        /* Continents visualization */
+        /* Continents */
         .continents-map {
             display: flex;
             justify-content: center;
@@ -398,7 +373,7 @@
             margin: 1rem auto 0;
         }
         
-        /* Skills Grid */
+        /* Skills */
         .skills-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -471,7 +446,7 @@
             color: var(--accent-copper);
         }
         
-        /* Soft Skills - Style spécial en premier */
+        /* Soft Skills */
         .soft-skills-hero {
             background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(184, 115, 51, 0.05) 100%);
             border: 2px solid rgba(212, 175, 55, 0.3);
@@ -510,7 +485,7 @@
             height: 24px;
         }
         
-        /* Software tags */
+        /* Software */
         .software-grid {
             display: flex;
             flex-wrap: wrap;
@@ -535,7 +510,7 @@
             transform: scale(1.05);
         }
         
-        /* International Experience */
+        /* International */
         .intl-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -566,39 +541,7 @@
             margin-bottom: 1rem;
         }
         
-        /* Contact Section */
-        .contact-section {
-            text-align: center;
-            background: rgba(30, 41, 59, 0.4);
-            border-radius: 24px;
-            padding: 4rem 2rem;
-            margin-top: 4rem;
-        }
-        
-        .contact-grid {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-        }
-        
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--accent-gold);
-            text-decoration: none;
-            transition: all 0.3s ease;
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-        }
-        
-        .contact-item:hover {
-            background: rgba(212, 175, 55, 0.1);
-            transform: translateY(-2px);
-        }
-        
+        /* CTA Button */
         .cta-button {
             display: inline-flex;
             align-items: center;
@@ -641,168 +584,6 @@
             transform: translateY(0);
         }
         
-        /* ==========================================
-           PORTFOLIO PHOTOS STYLES
-           ========================================== */
-        
-        .photo-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-        
-        .photo-item {
-            position: relative;
-            aspect-ratio: 1;
-            overflow: hidden;
-            border-radius: 12px;
-            cursor: pointer;
-            background: rgba(30, 41, 59, 0.6);
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            transition: all 0.4s ease;
-        }
-        
-        .photo-item:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent-gold);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        }
-        
-        .photo-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.4s ease;
-        }
-        
-        .photo-item:hover img {
-            transform: scale(1.1);
-        }
-        
-        .photo-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(to top, rgba(15, 23, 42, 0.9), transparent);
-            padding: 1.5rem;
-            transform: translateY(100%);
-            transition: transform 0.3s ease;
-        }
-        
-        .photo-item:hover .photo-overlay {
-            transform: translateY(0);
-        }
-        
-        .photo-title {
-            color: var(--accent-gold);
-            font-weight: 600;
-            font-size: 1rem;
-        }
-        
-        .photo-category {
-            color: var(--text-muted);
-            font-size: 0.875rem;
-            margin-top: 0.25rem;
-        }
-        
-        /* Lightbox */
-        .lightbox {
-            display: none;
-            position: fixed;
-            z-index: 2000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(15, 23, 42, 0.95);
-            backdrop-filter: blur(10px);
-        }
-        
-        .lightbox.active {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .lightbox-content {
-            max-width: 90%;
-            max-height: 90%;
-            object-fit: contain;
-            border-radius: 8px;
-            animation: lightboxIn 0.3s ease;
-        }
-        
-        @keyframes lightboxIn {
-            from { opacity: 0; transform: scale(0.8); }
-            to { opacity: 1; transform: scale(1); }
-        }
-        
-        .lightbox-close {
-            position: absolute;
-            top: 20px;
-            right: 40px;
-            color: var(--accent-gold);
-            font-size: 40px;
-            font-weight: bold;
-            cursor: pointer;
-            z-index: 2001;
-            transition: color 0.3s ease;
-        }
-        
-        .lightbox-close:hover {
-            color: var(--text-light);
-        }
-        
-        .lightbox-caption {
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            color: var(--text-light);
-            text-align: center;
-            max-width: 80%;
-            background: rgba(15, 23, 42, 0.8);
-            padding: 1rem 2rem;
-            border-radius: 8px;
-        }
-        
-        .lightbox-prev, .lightbox-next {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(212, 175, 55, 0.2);
-            color: var(--accent-gold);
-            border: 1px solid var(--accent-gold);
-            width: 50px;
-            height: 50px;
-            cursor: pointer;
-            border-radius: 50%;
-            font-size: 20px;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .lightbox-prev:hover, .lightbox-next:hover {
-            background: var(--accent-gold);
-            color: var(--primary-bg);
-        }
-        
-        .lightbox-prev { left: 20px; }
-        .lightbox-next { right: 20px; }
-        
-        .photo-loading {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 200px;
-            color: var(--accent-gold);
-            font-size: 1.2rem;
-        }
-        
         /* Responsive */
         @media (max-width: 768px) {
             .hero-stats {
@@ -836,28 +617,21 @@
                 height: 220px;
             }
             
-            .contact-grid {
-                flex-direction: column;
-                align-items: center;
-            }
-            
             .soft-skills-hero {
                 padding: 1.5rem;
             }
             
-            .photo-grid {
-                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-                gap: 1rem;
+            .dropdown-content {
+                position: static;
+                display: none;
+                box-shadow: none;
+                margin-top: 0.5rem;
+                width: 100%;
             }
             
-            .lightbox-prev, .lightbox-next {
-                width: 40px;
-                height: 40px;
-                font-size: 16px;
+            .dropdown.active .dropdown-content {
+                display: block;
             }
-            
-            .lightbox-prev { left: 10px; }
-            .lightbox-next { right: 10px; }
         }
     </style>
 </head>
@@ -879,19 +653,19 @@
                     <a href="#softskills" class="nav-link" data-key="nav_softskills">Soft Skills</a>
                     <a href="#archives" class="nav-link" data-key="nav_archives">Archivistique</a>
                     <a href="#communication" class="nav-link" data-key="nav_communication">Communication</a>
-                    <a href="#portfolio-photos" class="nav-link" data-key="nav_portfolio">Portfolio</a>
                     <a href="#international" class="nav-link" data-key="nav_international">International</a>
-                    <a href="#contact" class="nav-link" data-key="nav_contact">Contact</a>
                     
-                    <!-- Menu Portfolio déroulant -->
+                    <!-- Portfolio Dropdown -->
                     <div class="dropdown">
-                        <a href="#" class="nav-link" style="pointer-events: none;">▼</a>
+                        <a href="#" class="nav-link" data-key="nav_portfolio" onclick="return false;">Portfolio ▼</a>
                         <div class="dropdown-content">
-                            <a href="#portfolio-photos" data-key="nav_photos">Photos</a>
+                            <a href="portfolio-photos.html" data-key="nav_photos">Photos</a>
                             <a href="portfolio-visuels.html" data-key="nav_visuels">Visuels</a>
                             <a href="portfolio-videos.html" data-key="nav_videos">Vidéos</a>
                         </div>
                     </div>
+                    
+                    <a href="#contact-hero" class="nav-link" data-key="nav_contact">Contact</a>
                 </div>
                 <div class="flex space-x-2">
                     <button class="lang-btn active" onclick="changeLanguage('fr')">FR</button>
@@ -902,8 +676,8 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero">
+    <!-- Hero Section avec ID pour le lien Contact -->
+    <section class="hero" id="contact-hero">
         <div class="hero-content">
             <div class="profile-container">
                 <div class="profile-ring"></div>
@@ -921,7 +695,7 @@
             <h1 class="hero-name font-serif">Carla Mathias De Simone</h1>
             <h2 class="hero-title" data-key="hero_title">Professionnelle trilangue avec plus de 15 ans d'expérience, je connecte les organisations à leurs publics — et les savoirs à leur mémoire.</h2>
             
-            <!-- CTA visible dès le haut -->
+            <!-- CTA Contact -->
             <div class="hero-cta-top">
                 <a href="mailto:brabeca@gmail.com" class="cta-button">
                     <span data-key="cta_button">Me Contacter</span>
@@ -965,7 +739,7 @@
         </div>
     </section>
 
-    <!-- COMPÉTENCES TRANSVERSALES EN PREMIER -->
+    <!-- Soft Skills -->
     <section id="softskills" class="fade-in">
         <div class="soft-skills-hero">
             <h2 class="section-title font-serif" data-key="soft_skills_title">Compétences Transversales</h2>
@@ -1009,7 +783,7 @@
         </div>
     </section>
 
-    <!-- ENSUITE : Compétences Professionnelles -->
+    <!-- Expertise -->
     <section id="expertise" class="fade-in">
         <h2 class="section-title font-serif" data-key="expertise_title">Domaines d'Expertise Professionnelle</h2>
         <div class="grid md:grid-cols-2 gap-8 mt-8">
@@ -1026,7 +800,7 @@
         </div>
     </section>
 
-    <!-- Archivistique Section -->
+    <!-- Archivistique -->
     <section id="archives" class="fade-in">
         <h2 class="section-title font-serif" data-key="archives_section_title">Compétences en Archivistique</h2>
         <div class="skills-container">
@@ -1098,7 +872,7 @@
         </div>
     </section>
 
-    <!-- Communication Section -->
+    <!-- Communication -->
     <section id="communication" class="fade-in">
         <h2 class="section-title font-serif" data-key="comm_section_title">Compétences en Communication</h2>
         <div class="skills-container">
@@ -1164,7 +938,7 @@
         </div>
     </section>
 
-    <!-- Software Section -->
+    <!-- Software -->
     <section class="fade-in">
         <h2 class="section-title font-serif" data-key="software_title">Logiciels Maîtrisés</h2>
         <div class="software-grid">
@@ -1185,28 +959,7 @@
         </div>
     </section>
 
-    <!-- ==========================================
-         SECTION PORTFOLIO PHOTOS DYNAMIQUE
-         ========================================== -->
-    <section id="portfolio-photos" class="fade-in">
-        <h2 class="section-title font-serif" data-key="portfolio_photos_title">Portfolio Photos</h2>
-        
-        <!-- Grille de photos générée dynamiquement -->
-        <div id="photo-grid" class="photo-grid">
-            <div class="photo-loading">Chargement du portfolio...</div>
-        </div>
-        
-        <!-- Lightbox pour affichage plein écran -->
-        <div id="lightbox" class="lightbox">
-            <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
-            <img class="lightbox-content" id="lightbox-img" alt="">
-            <div class="lightbox-caption" id="lightbox-caption"></div>
-            <button class="lightbox-prev" onclick="navigateLightbox(-1)">&#10094;</button>
-            <button class="lightbox-next" onclick="navigateLightbox(1)">&#10095;</button>
-        </div>
-    </section>
-
-    <!-- International Experience -->
+    <!-- International -->
     <section id="international" class="fade-in">
         <h2 class="section-title font-serif" data-key="intl_title">Expérience Internationale</h2>
         <div class="intl-grid">
@@ -1262,180 +1015,22 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact-section fade-in">
-        <h2 class="text-3xl font-serif font-bold mb-4" data-key="contact_title">Travaillons Ensemble</h2>
-        <p class="text-gray-400 max-w-2xl mx-auto mb-8" data-key="contact_desc">Expertise internationale en communication et archivistique à votre service pour vos projets les plus ambitieux.</p>
-        
-        <div class="contact-grid">
-            <a href="mailto:brabeca@gmail.com" class="contact-item">
-                <i data-lucide="mail" class="w-5 h-5"></i>
-                <span>brabeca@gmail.com</span>
-            </a>
-            <a href="https://www.linkedin.com/in/carla-mathias-desimone/" target="_blank" class="contact-item">
-                <i data-lucide="linkedin" class="w-5 h-5"></i>
-                <span>LinkedIn</span>
-            </a>
-        </div>
-        
-        <a href="mailto:brabeca@gmail.com" class="cta-button">
-            <span data-key="cta_button">Me Contacter</span>
-            <i data-lucide="arrow-right" class="w-5 h-5"></i>
-        </a>
-    </section>
-
-    <!-- Footer -->
+    <!-- Footer SEULEMENT (pas de section Contact supplémentaire) -->
     <footer>
+        <div class="mb-4">
+            <a href="mailto:brabeca@gmail.com" class="text-yellow-500 hover:text-yellow-400 transition-colors">brabeca@gmail.com</a>
+            <span class="mx-2 text-gray-600">|</span>
+            <a href="https://www.linkedin.com/in/carla-mathias-desimone/" target="_blank" class="text-yellow-500 hover:text-yellow-400 transition-colors">LinkedIn</a>
+        </div>
         <p>&copy; 2026 Carla Mathias De Simone. <span data-key="rights">Tous droits réservés.</span></p>
         <p class="mt-2 text-sm" data-key="tagline">Communication & Archivistique Internationale</p>
     </footer>
 
     <script>
-        // ==========================================
-        // INITIALISATION DES ICÔNES
-        // ==========================================
+        // Initialize Lucide icons
         lucide.createIcons();
 
-        // ==========================================
-        // CONFIGURATION DU PORTFOLIO PHOTOS
-        // ==========================================
-        
-        // AJOUTEZ VOS PHOTOS ICI
-        const portfolioPhotos = [
-            {
-                src: 'photos/photo1.jpg',
-                title: 'Portrait Corporate',
-                category: 'Portrait'
-            },
-            {
-                src: 'photos/photo2.jpg',
-                title: 'Événement Professionnel',
-                category: 'Événement'
-            },
-            {
-                src: 'photos/photo3.jpg',
-                title: 'Architecture Moderne',
-                category: 'Architecture'
-            },
-            {
-                src: 'photos/photo4.jpg',
-                title: 'Reportage Documentaire',
-                category: 'Documentaire'
-            },
-            {
-                src: 'photos/photo5.jpg',
-                title: 'Nature et Paysage',
-                category: 'Paysage'
-            },
-            {
-                src: 'photos/photo6.jpg',
-                title: 'Photographie Urbaine',
-                category: 'Urbain'
-            }
-            // Ajoutez autant de photos que nécessaire
-        ];
-
-        let currentPhotoIndex = 0;
-
-        // Initialisation de la galerie photos
-        function initPhotoGallery() {
-            const grid = document.getElementById('photo-grid');
-            
-            if (!grid || portfolioPhotos.length === 0) {
-                if (grid) {
-                    grid.innerHTML = '<div class="text-center text-gray-400 py-12">Portfolio en cours de mise à jour</div>';
-                }
-                return;
-            }
-            
-            // Vider la grille
-            grid.innerHTML = '';
-            
-            // Générer les éléments photo
-            portfolioPhotos.forEach((photo, index) => {
-                const photoItem = document.createElement('div');
-                photoItem.className = 'photo-item';
-                photoItem.onclick = () => openLightbox(index);
-                
-                // Image avec gestion d'erreur
-                const img = document.createElement('img');
-                img.src = photo.src;
-                img.alt = photo.title;
-                img.loading = 'lazy';
-                img.onerror = function() {
-                    // Image de remplacement si le fichier n'existe pas
-                    this.src = 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22400%22%3E%3Crect width=%22400%22 height=%22400%22 fill=%22%231e293b%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%23d4af37%22 font-family=%22sans-serif%22 font-size=%2218%22%3E' + encodeURIComponent(photo.title) + '%3C/text%3E%3C/svg%3E';
-                };
-                
-                const overlay = document.createElement('div');
-                overlay.className = 'photo-overlay';
-                overlay.innerHTML = `
-                    <div class="photo-title">${photo.title}</div>
-                    <div class="photo-category">${photo.category}</div>
-                `;
-                
-                photoItem.appendChild(img);
-                photoItem.appendChild(overlay);
-                grid.appendChild(photoItem);
-            });
-        }
-
-        // Lightbox functions
-        function openLightbox(index) {
-            currentPhotoIndex = index;
-            updateLightbox();
-            
-            const lightbox = document.getElementById('lightbox');
-            lightbox.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeLightbox() {
-            const lightbox = document.getElementById('lightbox');
-            lightbox.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-
-        function navigateLightbox(direction) {
-            currentPhotoIndex += direction;
-            
-            // Boucler
-            if (currentPhotoIndex >= portfolioPhotos.length) {
-                currentPhotoIndex = 0;
-            } else if (currentPhotoIndex < 0) {
-                currentPhotoIndex = portfolioPhotos.length - 1;
-            }
-            
-            updateLightbox();
-        }
-
-        function updateLightbox() {
-            const photo = portfolioPhotos[currentPhotoIndex];
-            const lightboxImg = document.getElementById('lightbox-img');
-            const lightboxCaption = document.getElementById('lightbox-caption');
-            
-            lightboxImg.src = photo.src;
-            lightboxCaption.innerHTML = `<strong>${photo.title}</strong><br>${photo.category}`;
-        }
-
-        // Fermer lightbox avec Escape
-        document.addEventListener('keydown', (e) => {
-            const lightbox = document.getElementById('lightbox');
-            if (lightbox && lightbox.classList.contains('active')) {
-                if (e.key === 'Escape') {
-                    closeLightbox();
-                } else if (e.key === 'ArrowLeft') {
-                    navigateLightbox(-1);
-                } else if (e.key === 'ArrowRight') {
-                    navigateLightbox(1);
-                }
-            }
-        });
-
-        // ==========================================
-        // TRADUCTIONS MULTILINGUES
-        // ==========================================
-        
+        // Translations
         const translations = {
             fr: {
                 nav_softskills: "Soft Skills",
@@ -1523,7 +1118,6 @@
                 crisis_2: "Anticipation des risques",
                 crisis_3: "Minimisation des impacts négatifs",
                 software_title: "Logiciels Maîtrisés",
-                portfolio_photos_title: "Portfolio Photos",
                 intl_title: "Expérience Internationale",
                 brazil_desc: "Brésilienne d'origine, j'ai également vécu en Belgique et au Canada, ce qui a forgé mon trilinguisme et ma sensibilité interculturelle naturelle.",
                 canada_desc: "Établie au Canada, je m'intègre au marché professionnel québécois tout en apportant une perspective internationale unique.",
@@ -1534,8 +1128,6 @@
                 intercultural_desc: "Communication efficace en français, anglais et portugais.",
                 versatility_title: "Polyvalence",
                 versatility_desc: "Adaptation à différents systèmes de gestion documentaire et muséale.",
-                contact_title: "Travaillons Ensemble",
-                contact_desc: "Expertise internationale en communication et archivistique à votre service pour vos projets les plus ambitieux.",
                 cta_button: "Me Contacter",
                 rights: "Tous droits réservés.",
                 tagline: "Communication & Archivistique Internationale"
@@ -1626,7 +1218,6 @@
                 crisis_2: "Risk anticipation",
                 crisis_3: "Minimize negative impacts",
                 software_title: "Software Proficiency",
-                portfolio_photos_title: "Photo Portfolio",
                 intl_title: "International Experience",
                 brazil_desc: "Originally from Brazil, I have also lived in Belgium and Canada, which forged my trilingualism and natural intercultural sensitivity.",
                 canada_desc: "Based in Canada, I integrate into the Quebec professional market while bringing a unique international perspective.",
@@ -1637,8 +1228,6 @@
                 intercultural_desc: "Effective communication in French, English and Portuguese.",
                 versatility_title: "Versatility",
                 versatility_desc: "Adaptation to different archival and museum management systems.",
-                contact_title: "Let's Work Together",
-                contact_desc: "International expertise in communication and archival science at your service for your most ambitious projects.",
                 cta_button: "Contact Me",
                 rights: "All rights reserved.",
                 tagline: "International Communication & Archival Science"
@@ -1729,7 +1318,6 @@
                 crisis_2: "Antecipação de riscos",
                 crisis_3: "Minimização de impactos negativos",
                 software_title: "Softwares Dominados",
-                portfolio_photos_title: "Portfólio de Fotos",
                 intl_title: "Experiência Internacional",
                 brazil_desc: "Brasileira de origem, também vivi na Bélgica e no Canadá, o que forjou meu trilinguísmo e minha sensibilidade intercultural natural.",
                 canada_desc: "Baseada no Canadá, integro-me ao mercado profissional quebequense trazendo uma perspectiva internacional única.",
@@ -1740,8 +1328,6 @@
                 intercultural_desc: "Comunicação eficaz em francês, inglês e português.",
                 versatility_title: "Polivalência",
                 versatility_desc: "Adaptação a diferentes sistemas de gestão documental e museológica.",
-                contact_title: "Vamos Trabalhar Juntos",
-                contact_desc: "Especialização internacional em comunicação e arquivística à sua disposição para seus projetos mais ambiciosos.",
                 cta_button: "Entre em Contato",
                 rights: "Todos os direitos reservados.",
                 tagline: "Comunicação & Arquivística Internacional"
@@ -1827,18 +1413,8 @@
             });
         });
 
-        // ==========================================
-        // INITIALISATION AU CHARGEMENT
-        // ==========================================
-        
+        // Preload profile image
         document.addEventListener('DOMContentLoaded', () => {
-            // Initialiser les icônes
-            lucide.createIcons();
-            
-            // Initialiser la galerie photos
-            initPhotoGallery();
-            
-            // Précharger l'image de profil pour éviter les délais
             const profileImg = document.getElementById('profile-img');
             if (profileImg) {
                 const img = new Image();
