@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio Photos | Carla Mathias De Simone</title>
+    <title>Documentation | Carla Mathias De Simone</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -28,7 +28,6 @@
         
         .font-serif { font-family: 'Playfair Display', serif; }
         
-        /* Navigation */
         .nav-container {
             position: fixed;
             top: 0;
@@ -62,7 +61,6 @@
         
         .nav-link:hover::after, .nav-link.active::after { width: 100%; }
         
-        /* GALERIE PHOTOS - GRID RESPONSIVE */
         .gallery-container {
             padding: 100px 2rem 2rem;
             max-width: 1400px;
@@ -71,7 +69,7 @@
         
         .gallery {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
             gap: 1.5rem;
         }
         
@@ -99,7 +97,7 @@
             transition: transform 0.4s ease;
         }
         
-        .gallery-item:hover img { transform: scale(1.1); }
+        .gallery-item:hover img { transform: scale(1.05); }
         
         .gallery-caption {
             position: absolute;
@@ -107,25 +105,27 @@
             left: 0;
             right: 0;
             background: linear-gradient(to top, rgba(15, 23, 42, 0.95), transparent);
-            padding: 2rem 1rem 1rem;
-            transform: translateY(100%);
-            transition: transform 0.3s ease;
+            padding: 2.5rem 1rem 1rem;
         }
         
-        .gallery-item:hover .gallery-caption { transform: translateY(0); }
+        .gallery-category {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: rgba(212, 175, 55, 0.2);
+            color: var(--accent-gold);
+            font-size: 0.75rem;
+            border-radius: 4px;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
         
         .gallery-title {
-            color: var(--accent-gold);
+            color: var(--text-light);
             font-weight: 600;
             font-size: 1.1rem;
         }
         
-        .gallery-category {
-            color: var(--text-muted);
-            font-size: 0.875rem;
-        }
-        
-        /* Lightbox */
         .lightbox {
             display: none;
             position: fixed;
@@ -134,7 +134,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(15, 23, 42, 0.95);
+            background: rgba(15, 23, 42, 0.98);
             backdrop-filter: blur(10px);
         }
         
@@ -146,7 +146,7 @@
         
         .lightbox-content {
             max-width: 90%;
-            max-height: 90%;
+            max-height: 85%;
             object-fit: contain;
             border-radius: 8px;
         }
@@ -158,10 +158,7 @@
             color: var(--accent-gold);
             font-size: 40px;
             cursor: pointer;
-            transition: color 0.3s;
         }
-        
-        .lightbox-close:hover { color: var(--text-light); }
         
         .lightbox-nav {
             position: absolute;
@@ -195,25 +192,12 @@
             left: 50%;
             transform: translateX(-50%);
             text-align: center;
-            background: rgba(15, 23, 42, 0.8);
+            background: rgba(15, 23, 42, 0.9);
             padding: 1rem 2rem;
             border-radius: 8px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
         }
         
-        /* Loading state */
-        .gallery-loading {
-            text-align: center;
-            padding: 3rem;
-            color: var(--accent-gold);
-        }
-        
-        .gallery-empty {
-            text-align: center;
-            padding: 3rem;
-            color: var(--text-muted);
-        }
-        
-        /* Back button */
         .back-btn {
             display: inline-flex;
             align-items: center;
@@ -226,19 +210,16 @@
         
         .back-btn:hover { transform: translateX(-5px); }
         
-        /* Responsive */
+        .gallery-empty {
+            text-align: center;
+            padding: 4rem;
+            color: var(--text-muted);
+            grid-column: 1 / -1;
+        }
+        
         @media (max-width: 768px) {
-            .gallery {
-                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-                gap: 1rem;
-            }
-            
-            .lightbox-nav {
-                width: 40px;
-                height: 40px;
-                font-size: 16px;
-            }
-            
+            .gallery { grid-template-columns: 1fr; }
+            .lightbox-nav { width: 40px; height: 40px; font-size: 16px; }
             .lightbox-prev { left: 10px; }
             .lightbox-next { right: 10px; }
         }
@@ -250,10 +231,10 @@
         <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
             <a href="index.html" class="font-serif text-xl font-bold text-yellow-500">Carla M.D.S.</a>
             <div class="flex gap-6 items-center">
-                <a href="index.html" class="nav-link" data-key="nav_home">Accueil</a>
-                <a href="portfolio-photos.html" class="nav-link active" data-key="nav_photos">Photos</a>
-                <a href="portfolio-visuels.html" class="nav-link" data-key="nav_visuels">Visuels</a>
-                <a href="portfolio-videos.html" class="nav-link" data-key="nav_videos">Vidéos</a>
+                <a href="index.html" class="nav-link">Accueil</a>
+                <a href="portfolio-photos.html" class="nav-link active" style="color: var(--accent-gold)">Photos</a>
+                <a href="portfolio-visuels.html" class="nav-link">Visuels</a>
+                <a href="portfolio-videos.html" class="nav-link">Vidéos</a>
             </div>
         </div>
     </nav>
@@ -262,16 +243,14 @@
     <div class="gallery-container">
         <a href="index.html" class="back-btn">
             <i data-lucide="arrow-left"></i>
-            <span data-key="back_home">Retour à l'accueil</span>
+            <span>Retour à l'accueil</span>
         </a>
         
-        <h1 class="text-4xl font-serif text-center mb-2" style="color: var(--accent-gold)" data-key="portfolio_title">Portfolio Photographie</h1>
-        <p class="text-center text-gray-400 mb-8" data-key="portfolio_subtitle">Sélection de mes travaux photographiques</p>
+        <h1 class="text-4xl font-serif text-center mb-2" style="color: var(--accent-gold)">Documentation</h1>
+        <p class="text-center text-gray-400 mb-8">Photos de missions, archives et événements professionnels</p>
         
-        <!-- Galerie générée automatiquement -->
-        <div id="gallery" class="gallery">
-            <div class="gallery-loading">Chargement des photos...</div>
-        </div>
+        <!-- La galerie sera remplie par JavaScript -->
+        <div id="gallery" class="gallery"></div>
     </div>
 
     <!-- Lightbox -->
@@ -283,38 +262,57 @@
         <div class="lightbox-caption" id="lightbox-caption"></div>
     </div>
 
-    <!-- Scripts -->
-    <script src="photos-data.js"></script>
     <script>
-        // Variables globales
-        let currentPhotos = [];
+        // ==========================================
+        // LISTE MANUELLE DE VOS PHOTOS
+        // MODIFIEZ CETTE PARTIE AVEC VOS VRAIES PHOTOS
+        // ==========================================
+        
+        const portfolioPhotos = [
+            // Exemple : remplacez par vos vrais noms de fichiers
+            // { src: "images/nom-de-votre-photo.jpg", title: "Description", category: "Catégorie" },
+            
+            { src: "images/archives_classement_benin.jpg", title: "Classement archives Bénin", category: "Archives" },
+            { src: "images/communication_campagne_2024.jpg", title: "Campagne communication 2024", category: "Communication" },
+            { src: "images/mission_terrain_benin.jpg", title: "Mission terrain Bénin", category: "Mission" },
+            { src: "images/atelier_formation_docs.jpg", title: "Atelier formation gestion docs", category: "Formation" },
+            { src: "images/evenement_vernissage.jpg", title: "Vernissage exposition", category: "Événement" }
+            
+            // AJOUTEZ D'AUTRES PHOTOS ICI EN COPIANT LE FORMAT CI-DESSUS
+        ];
+        
+        // ==========================================
+        // NE RIEN TOUCHER EN DESSOUS
+        // ==========================================
+        
         let currentIndex = 0;
         
-        // Initialisation des icônes
-        lucide.createIcons();
+        // Initialisation
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+            initGallery();
+        });
         
-        // Fonction d'initialisation (appelée par photos-data.js)
-        function initPhotoGallery(photos) {
-            currentPhotos = photos;
+        function initGallery() {
             const gallery = document.getElementById('gallery');
             
-            if (!photos || photos.length === 0) {
-                gallery.innerHTML = '<div class="gallery-empty">Aucune photo trouvée. Ajoutez des images dans le dossier /images.</div>';
+            if (portfolioPhotos.length === 0) {
+                gallery.innerHTML = '<div class="gallery-empty">Aucune photo. Ajoutez des photos dans le tableau portfolioPhotos (ligne 230)</div>';
                 return;
             }
             
             gallery.innerHTML = '';
             
-            photos.forEach((photo, index) => {
+            portfolioPhotos.forEach((photo, index) => {
                 const item = document.createElement('div');
                 item.className = 'gallery-item';
                 item.onclick = () => openLightbox(index);
                 
                 item.innerHTML = `
-                    <img src="${photo.src}" alt="${photo.title}" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <img src="${photo.src}" alt="${photo.title}" loading="lazy" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\\'padding:2rem;text-align:center;color:var(--text-muted)\\'>Image non trouvée:<br>${photo.src}</div>'">
                     <div class="gallery-caption">
+                        <span class="gallery-category">${photo.category}</span>
                         <div class="gallery-title">${photo.title}</div>
-                        <div class="gallery-category">${photo.category}</div>
                     </div>
                 `;
                 
@@ -322,7 +320,7 @@
             });
         }
         
-        // Lightbox functions
+        // Lightbox
         function openLightbox(index) {
             currentIndex = index;
             updateLightbox();
@@ -337,21 +335,21 @@
         
         function navigateLightbox(direction) {
             currentIndex += direction;
-            if (currentIndex >= currentPhotos.length) currentIndex = 0;
-            if (currentIndex < 0) currentIndex = currentPhotos.length - 1;
+            if (currentIndex >= portfolioPhotos.length) currentIndex = 0;
+            if (currentIndex < 0) currentIndex = portfolioPhotos.length - 1;
             updateLightbox();
         }
         
         function updateLightbox() {
-            const photo = currentPhotos[currentIndex];
+            const photo = portfolioPhotos[currentIndex];
             document.getElementById('lightbox-img').src = photo.src;
             document.getElementById('lightbox-caption').innerHTML = `
-                <strong style="color: var(--accent-gold)">${photo.title}</strong><br>
-                <span style="color: var(--text-muted)">${photo.category}</span>
+                <div style="color: var(--accent-gold); margin-bottom: 0.5rem;">${photo.category}</div>
+                <strong style="color: var(--text-light);">${photo.title}</strong>
             `;
         }
         
-        // Keyboard navigation
+        // Clavier
         document.addEventListener('keydown', (e) => {
             const lightbox = document.getElementById('lightbox');
             if (lightbox.classList.contains('active')) {
@@ -361,53 +359,9 @@
             }
         });
         
-        // Close on background click
+        // Fermer en cliquant hors image
         document.getElementById('lightbox').addEventListener('click', (e) => {
             if (e.target.id === 'lightbox') closeLightbox();
-        });
-        
-        // Traductions
-        const translations = {
-            fr: {
-                nav_home: "Accueil",
-                nav_photos: "Photos",
-                nav_visuels: "Visuels",
-                nav_videos: "Vidéos",
-                portfolio_title: "Portfolio Photographie",
-                portfolio_subtitle: "Sélection de mes travaux photographiques",
-                back_home: "Retour à l'accueil"
-            },
-            en: {
-                nav_home: "Home",
-                nav_photos: "Photos",
-                nav_visuels: "Visuals",
-                nav_videos: "Videos",
-                portfolio_title: "Photography Portfolio",
-                portfolio_subtitle: "Selection of my photographic work",
-                back_home: "Back to home"
-            },
-            pt: {
-                nav_home: "Início",
-                nav_photos: "Fotos",
-                nav_visuels: "Visuais",
-                nav_videos: "Vídeos",
-                portfolio_title: "Portfólio de Fotografia",
-                portfolio_subtitle: "Seleção dos meus trabalhos fotográficos",
-                back_home: "Voltar ao início"
-            }
-        };
-        
-        // Détecter la langue depuis l'URL ou localStorage
-        const urlLang = new URLSearchParams(window.location.search).get('lang');
-        const storedLang = localStorage.getItem('preferredLang');
-        const currentLang = urlLang || storedLang || 'fr';
-        
-        // Appliquer les traductions
-        document.querySelectorAll('[data-key]').forEach(el => {
-            const key = el.getAttribute('data-key');
-            if (translations[currentLang] && translations[currentLang][key]) {
-                el.textContent = translations[currentLang][key];
-            }
         });
     </script>
 </body>
