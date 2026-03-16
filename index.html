@@ -87,7 +87,7 @@
             width: 100%;
             z-index: 1000;
             backdrop-filter: blur(20px);
-            background: rgba(15, 23, 42, 0.8);
+            background: rgba(15, 23, 42, 0.9);
             border-bottom: 1px solid rgba(212, 175, 55, 0.1);
             transition: all 0.3s ease;
         }
@@ -96,6 +96,8 @@
             position: relative;
             color: var(--text-muted);
             transition: color 0.3s ease;
+            text-decoration: none;
+            padding: 0.5rem 0;
         }
         
         .nav-link:hover, .nav-link.active {
@@ -115,6 +117,52 @@
         
         .nav-link:hover::after, .nav-link.active::after {
             width: 100%;
+        }
+        
+        /* Dropdown Menu */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background: rgba(30, 41, 59, 0.95);
+            min-width: 160px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 8px;
+            z-index: 1001;
+            top: 100%;
+            margin-top: 0.5rem;
+            backdrop-filter: blur(10px);
+        }
+        
+        .dropdown-content a {
+            color: var(--text-muted);
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+        }
+        
+        .dropdown-content a:last-child {
+            border-bottom: none;
+        }
+        
+        .dropdown-content a:hover {
+            background: rgba(212, 175, 55, 0.1);
+            color: var(--accent-gold);
+        }
+        
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        
+        .dropdown:hover .nav-link {
+            color: var(--accent-gold);
         }
         
         /* Language switcher */
@@ -142,7 +190,7 @@
             justify-content: center;
             position: relative;
             padding: 2rem;
-            padding-top: 6rem;
+            padding-top: 8rem;
         }
         
         .hero-content {
@@ -167,16 +215,18 @@
             width: 280px;
             height: 280px;
             margin: 0 auto 2rem;
+            flex-shrink: 0;
         }
         
         .profile-image {
-            width: 100%;
-            height: 100%;
+            width: 280px;
+            height: 280px;
             object-fit: cover;
             border-radius: 50%;
             border: 4px solid var(--accent-gold);
             box-shadow: 0 0 40px rgba(212, 175, 55, 0.3);
             transition: all 0.4s ease;
+            display: block;
         }
         
         .profile-container:hover .profile-image {
@@ -193,6 +243,7 @@
             border: 2px solid rgba(212, 175, 55, 0.3);
             border-radius: 50%;
             animation: pulse 3s infinite;
+            pointer-events: none;
         }
         
         @keyframes pulse {
@@ -201,21 +252,24 @@
         }
         
         .hero-title {
-            font-size: 1.5rem;
-            font-weight: 700;
+            font-size: clamp(1.25rem, 3vw, 1.75rem);
+            font-weight: 600;
             background: linear-gradient(135deg, var(--accent-gold) 0%, var(--accent-copper) 50%, var(--accent-gold) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            margin-bottom: 0.5rem;
-            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            line-height: 1.4;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
         }
         
         .hero-name {
-            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            font-size: clamp(2rem, 5vw, 3.5rem);
             color: var(--text-light);
             margin-bottom: 1rem;
-            font-weight: 300;
+            font-weight: 700;
         }
         
         .hero-subtitle {
@@ -223,6 +277,10 @@
             color: var(--text-muted);
             margin-bottom: 2rem;
             font-weight: 300;
+        }
+        
+        .hero-cta-top {
+            margin: 2rem 0;
         }
         
         .hero-stats {
@@ -507,7 +565,7 @@
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            padding: 1rem 2rem;
+            padding: 1rem 2.5rem;
             background: linear-gradient(135deg, var(--accent-gold) 0%, var(--accent-copper) 100%);
             color: var(--primary-bg);
             font-weight: 600;
@@ -515,11 +573,13 @@
             text-decoration: none;
             transition: all 0.3s ease;
             margin-top: 1rem;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
         }
         
         .cta-button:hover {
             transform: scale(1.05);
-            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
         }
         
         /* Footer */
@@ -562,8 +622,13 @@
             }
             
             .profile-container {
-                width: 200px;
-                height: 200px;
+                width: 220px;
+                height: 220px;
+            }
+            
+            .profile-image {
+                width: 220px;
+                height: 220px;
             }
             
             .contact-grid {
@@ -573,6 +638,17 @@
             
             .soft-skills-hero {
                 padding: 1.5rem;
+            }
+            
+            .dropdown-content {
+                position: static;
+                display: none;
+                box-shadow: none;
+                margin-top: 0.5rem;
+            }
+            
+            .dropdown.active .dropdown-content {
+                display: block;
             }
         }
     </style>
@@ -591,15 +667,22 @@
                 <div class="flex-shrink-0 font-serif text-xl font-bold text-yellow-500">
                     Carla M.D.S.
                 </div>
-                <div class="hidden md:flex space-x-8">
+                <div class="hidden md:flex space-x-8 items-center">
                     <a href="#softskills" class="nav-link" data-key="nav_softskills">Soft Skills</a>
                     <a href="#archives" class="nav-link" data-key="nav_archives">Archivistique</a>
                     <a href="#communication" class="nav-link" data-key="nav_communication">Communication</a>
                     <a href="#international" class="nav-link" data-key="nav_international">International</a>
                     <a href="#contact" class="nav-link" data-key="nav_contact">Contact</a>
-                    <a href="portfolio-photos.html" class="nav-link">Photos</a>
-                    <a href="portfolio-visuels.html" class="nav-link">Visuels</a>
-                    <a href="portfolio-videos.html" class="nav-link">Vidéos</a>
+                    
+                    <!-- Menu Portfolio déroulant -->
+                    <div class="dropdown">
+                        <a href="#" class="nav-link" data-key="nav_portfolio">Portfolio ▼</a>
+                        <div class="dropdown-content">
+                            <a href="portfolio-photos.html" data-key="nav_photos">Photos</a>
+                            <a href="portfolio-visuels.html" data-key="nav_visuels">Visuels</a>
+                            <a href="portfolio-videos.html" data-key="nav_videos">Vidéos</a>
+                        </div>
+                    </div>
                 </div>
                 <div class="flex space-x-2">
                     <button class="lang-btn active" onclick="changeLanguage('fr')">FR</button>
@@ -615,29 +698,36 @@
         <div class="hero-content">
             <div class="profile-container">
                 <div class="profile-ring"></div>
-                <img src="photo_profil.jpeg" alt="Carla Mathias De Simone" class="profile-image" id="profile-img">
+                <img src="photo_profil.jpeg" alt="Carla Mathias De Simone" class="profile-image" id="profile-img" width="280" height="280">
             </div>
             
             <h1 class="hero-name font-serif">Carla Mathias De Simone</h1>
-            <h2 class="hero-title">Professionnelle bilingue avec plus de 15 ans d’expérience, je connecte les organisations à leurs publics — et les savoirs à leur mémoire. </h2>
-            <p class="hero-subtitle" data-key="hero_subtitle">Plus de 15 ans d’expérience en tant qu’expatriée</p>
+            <h2 class="hero-title" data-key="hero_title">Professionnelle bilingue avec plus de 15 ans d'expérience, je connecte les organisations à leurs publics — et les savoirs à leur mémoire.</h2>
+            
+            <!-- CTA visible dès le haut -->
+            <div class="hero-cta-top">
+                <a href="mailto:brabeca@gmail.com" class="cta-button">
+                    <span data-key="cta_button">Me Contacter</span>
+                    <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                </a>
+            </div>
             
             <div class="continents-map">
                 <div class="continent-badge">
                     <i data-lucide="globe" class="w-5 h-5 text-yellow-500"></i>
-                    <span>Amérique du Nord</span>
+                    <span data-key="continent_na">Amérique du Nord</span>
                 </div>
                 <div class="continent-badge">
                     <i data-lucide="globe" class="w-5 h-5 text-yellow-500"></i>
-                    <span>Amérique du Sud</span>
+                    <span data-key="continent_sa">Amérique du Sud</span>
                 </div>
                 <div class="continent-badge">
                     <i data-lucide="globe" class="w-5 h-5 text-yellow-500"></i>
-                    <span>Europe</span>
+                    <span data-key="continent_eu">Europe</span>
                 </div>
                 <div class="continent-badge">
                     <i data-lucide="globe" class="w-5 h-5 text-yellow-500"></i>
-                    <span>Afrique</span>
+                    <span data-key="continent_af">Afrique</span>
                 </div>
             </div>
 
@@ -648,7 +738,7 @@
                 </div>
                 <div class="stat-item">
                     <span class="stat-number">4</span>
-                    <span class="stat-label" data-key="Pays">Pays</span>
+                    <span class="stat-label" data-key="continents">Continents</span>
                 </div>
                 <div class="stat-item">
                     <span class="stat-number">3</span>
@@ -663,7 +753,7 @@
         <div class="soft-skills-hero">
             <h2 class="section-title font-serif" data-key="soft_skills_title">Compétences Transversales</h2>
             <p class="text-center text-gray-400 mb-8 max-w-3xl mx-auto" data-key="soft_skills_intro">
-                Les fondations de mon approche professionnelle, développées à travers 15 ans d'expérience en Amérique du Nord et du sud et en tant qu'expatriéeen Afrique d'Ouest.
+                Les fondations de mon approche professionnelle, développées à travers 15 ans d'expérience en Amérique du Nord et du Sud et en tant qu'expatriée en Afrique de l'Ouest.
             </p>
             
             <div class="soft-skills-grid">
@@ -885,7 +975,7 @@
             <div class="intl-card">
                 <div class="country-flag">🇧🇷🇧🇪</div>
                 <h3 class="text-xl font-semibold text-yellow-500 mb-2">Brésil-Belgique</h3>
-                <p class="text-gray-400 text-sm mb-4" data-key="brazil_desc">Brésilienne d’origine, j’ai également vécu en Belgique et au Canada, ce qui a forgé mon trilinguisme et ma sensibilité interculturelle naturelle. </p>
+                <p class="text-gray-400 text-sm mb-4" data-key="brazil_desc">Brésilienne d'origine, j'ai également vécu en Belgique et au Canada, ce qui a forgé mon trilinguisme et ma sensibilité interculturelle naturelle.</p>
                 <div class="flex items-center gap-2 text-sm text-yellow-600">
                     <i data-lucide="map-pin" class="w-4 h-4"></i>
                     <span>Amérique du Sud</span>
@@ -895,7 +985,7 @@
             <div class="intl-card">
                 <div class="country-flag">🇨🇦</div>
                 <h3 class="text-xl font-semibold text-yellow-500 mb-2">Canada</h3>
-                <p class="text-gray-400 text-sm mb-4" data-key="canada_desc">Établie au Canada, je m’intègre au marché professionnel québécois tout en apportant une perspective internationale unique.</p>
+                <p class="text-gray-400 text-sm mb-4" data-key="canada_desc">Établie au Canada, je m'intègre au marché professionnel québécois tout en apportant une perspective internationale unique.</p>
                 <div class="flex items-center gap-2 text-sm text-yellow-600">
                     <i data-lucide="map-pin" class="w-4 h-4"></i>
                     <span>Amérique du Nord</span>
@@ -905,7 +995,7 @@
             <div class="intl-card">
                 <div class="country-flag">🇧🇯</div>
                 <h3 class="text-xl font-semibold text-yellow-500 mb-2">Bénin</h3>
-                <p class="text-gray-400 text-sm mb-4" data-key="benin_desc">J’ai exercé en tant qu’expatriée en Afrique de l’Ouest (Bénin), dans le cadre d’une mission professionnelle structurée en communication et gestion documentaire.</p>
+                <p class="text-gray-400 text-sm mb-4" data-key="benin_desc">J'ai exercé en tant qu'expatriée en Afrique de l'Ouest (Bénin), dans le cadre d'une mission professionnelle structurée en communication et gestion documentaire.</p>
                 <div class="flex items-center gap-2 text-sm text-yellow-600">
                     <i data-lucide="map-pin" class="w-4 h-4"></i>
                     <span>Afrique</span>
@@ -933,38 +1023,7 @@
             </div>
         </div>
     </section>
-<!-- SECTION PORTFOLIO -->
-<section id="portfolio" class="fade-in">
-    <h2 class="section-title font-serif">Portfolio</h2>
-    <div class="grid md:grid-cols-3 gap-6">
-        
-        <!-- Carte Photos -->
-        <a href="portfolio-photos.html" class="skill-card text-center" style="text-decoration: none; display: block;">
-            <i data-lucide="camera" class="skill-icon mx-auto"></i>
-            <h3 class="skill-title">Photographie</h3>
-            <p class="text-gray-400">Galerie de mes travaux photo</p>
-        </a>
-        
-        <!-- Carte Visuels -->
-        <a href="portfolio-visuels.html" class="skill-card text-center" style="text-decoration: none; display: block;">
-            <i data-lucide="palette" class="skill-icon mx-auto"></i>
-            <h3 class="skill-title">Créations Visuelles</h3>
-            <p class="text-gray-400">Design et illustrations</p>
-        </a>
-        
-        <!-- Carte Vidéos -->
-        <a href="portfolio-videos.html" class="skill-card text-center" style="text-decoration: none; display: block;">
-            <i data-lucide="video" class="skill-icon mx-auto"></i>
-            <h3 class="skill-title">Vidéos</h3>
-            <p class="text-gray-400">Montage et édition vidéo</p>
-        </a>
-        
-    </div>
-</section>
 
-<!-- SECTION CONTACT (déjà existante, ne pas modifier) -->
-<section id="contact" class="contact-section fade-in">
-    ...
     <!-- Contact Section -->
     <section id="contact" class="contact-section fade-in">
         <h2 class="text-3xl font-serif font-bold mb-4" data-key="contact_title">Travaillons Ensemble</h2>
@@ -989,7 +1048,7 @@
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2024 Carla Mathias De Simone. <span data-key="rights">Tous droits réservés.</span></p>
+        <p>&copy; 2026 Carla Mathias De Simone. <span data-key="rights">Tous droits réservés.</span></p>
         <p class="mt-2 text-sm" data-key="tagline">Communication & Archivistique Internationale</p>
     </footer>
 
@@ -1005,12 +1064,20 @@
                 nav_communication: "Communication",
                 nav_international: "International",
                 nav_contact: "Contact",
-                hero_subtitle: "Plus de 15 ans d'expérience internationale",
+                nav_portfolio: "Portfolio",
+                nav_photos: "Photos",
+                nav_visuels: "Visuels",
+                nav_videos: "Vidéos",
+                hero_title: "Professionnelle bilingue avec plus de 15 ans d'expérience, je connecte les organisations à leurs publics — et les savoirs à leur mémoire.",
+                continent_na: "Amérique du Nord",
+                continent_sa: "Amérique du Sud",
+                continent_eu: "Europe",
+                continent_af: "Afrique",
                 years_exp: "Années d'expérience",
                 continents: "Continents",
                 languages: "Langues",
                 soft_skills_title: "Compétences Transversales",
-                soft_skills_intro: "Les fondations de mon approche professionnelle, développées à travers 15 ans d'expérience internationale sur 4 continents.",
+                soft_skills_intro: "Les fondations de mon approche professionnelle, développées à travers 15 ans d'expérience en Amérique du Nord et du Sud et en tant qu'expatriée en Afrique de l'Ouest.",
                 synthesis_title: "Esprit de Synthèse",
                 synthesis_desc: "Capacité à structurer des informations complexes de manière claire et accessible.",
                 collab_title: "Collaboration",
@@ -1078,9 +1145,9 @@
                 crisis_3: "Minimisation des impacts négatifs",
                 software_title: "Logiciels Maîtrisés",
                 intl_title: "Expérience Internationale",
-                brazil_desc: "Expérience professionnelle en Amérique du Sud, maîtrise du portugais et compréhension des dynamiques culturelles latino-américaines.",
-                canada_desc: "Expérience en Amérique du Nord, bilinguisme français-anglais et connaissance des environnements professionnels nord-américains.",
-                benin_desc: "Expérience en Afrique de l'Ouest, adaptation à des contextes de travail variés et compréhension des enjeux du développement.",
+                brazil_desc: "Brésilienne d'origine, j'ai également vécu en Belgique et au Canada, ce qui a forgé mon trilinguisme et ma sensibilité interculturelle naturelle.",
+                canada_desc: "Établie au Canada, je m'intègre au marché professionnel québécois tout en apportant une perspective internationale unique.",
+                benin_desc: "J'ai exercé en tant qu'expatriée en Afrique de l'Ouest (Bénin), dans le cadre d'une mission professionnelle structurée en communication et gestion documentaire.",
                 adaptation_title: "Adaptation Culturelle",
                 adaptation_desc: "Capacité à travailler dans des environnements variés et à comprendre les codes locaux.",
                 intercultural_title: "Communication Interculturelle",
@@ -1099,12 +1166,20 @@
                 nav_communication: "Communication",
                 nav_international: "International",
                 nav_contact: "Contact",
-                hero_subtitle: "Over 15 years of international experience",
+                nav_portfolio: "Portfolio",
+                nav_photos: "Photos",
+                nav_visuels: "Visuals",
+                nav_videos: "Videos",
+                hero_title: "Bilingual professional with over 15 years of experience, I connect organizations to their audiences — and knowledge to memory.",
+                continent_na: "North America",
+                continent_sa: "South America",
+                continent_eu: "Europe",
+                continent_af: "Africa",
                 years_exp: "Years of Experience",
                 continents: "Continents",
                 languages: "Languages",
                 soft_skills_title: "Transversal Skills",
-                soft_skills_intro: "The foundations of my professional approach, developed through 15 years of international experience across 4 continents.",
+                soft_skills_intro: "The foundations of my professional approach, developed through 15 years of experience in North and South America and as an expatriate in West Africa.",
                 synthesis_title: "Analytical Thinking",
                 synthesis_desc: "Ability to structure complex information in a clear and accessible manner.",
                 collab_title: "Collaboration",
@@ -1120,7 +1195,7 @@
                 comm_desc: "Integrated communication strategy, public relations and crisis management.",
                 archives_section_title: "Archival Skills",
                 planning_title: "Planning and Design",
-                planning_1: "Define document management policies",
+                planning_1: "Define records management policies",
                 planning_2: "Develop classification plans",
                 planning_3: "Design retrieval systems",
                 evaluation_title: "Evaluation and Selection",
@@ -1172,9 +1247,9 @@
                 crisis_3: "Minimize negative impacts",
                 software_title: "Software Proficiency",
                 intl_title: "International Experience",
-                brazil_desc: "Professional experience in South America, Portuguese fluency and understanding of Latin American cultural dynamics.",
-                canada_desc: "Experience in North America, French-English bilingualism and knowledge of North American professional environments.",
-                benin_desc: "Experience in West Africa, adaptation to diverse work contexts and understanding of development issues.",
+                brazil_desc: "Originally from Brazil, I have also lived in Belgium and Canada, which forged my trilingualism and natural intercultural sensitivity.",
+                canada_desc: "Based in Canada, I integrate into the Quebec professional market while bringing a unique international perspective.",
+                benin_desc: "I worked as an expatriate in West Africa (Benin), as part of a structured professional mission in communication and records management.",
                 adaptation_title: "Cultural Adaptation",
                 adaptation_desc: "Ability to work in diverse environments and understand local codes.",
                 intercultural_title: "Intercultural Communication",
@@ -1193,12 +1268,20 @@
                 nav_communication: "Comunicação",
                 nav_international: "Internacional",
                 nav_contact: "Contato",
-                hero_subtitle: "Mais de 15 anos de experiência internacional",
+                nav_portfolio: "Portfólio",
+                nav_photos: "Fotos",
+                nav_visuels: "Visuais",
+                nav_videos: "Vídeos",
+                hero_title: "Profissional bilíngue com mais de 15 anos de experiência, conecto organizações aos seus públicos — e conhecimentos à memória.",
+                continent_na: "América do Norte",
+                continent_sa: "América do Sul",
+                continent_eu: "Europa",
+                continent_af: "África",
                 years_exp: "Anos de Experiência",
                 continents: "Continentes",
                 languages: "Idiomas",
                 soft_skills_title: "Competências Transversais",
-                soft_skills_intro: "Os fundamentos da minha abordagem profissional, desenvolvidos ao longo de 15 anos de experiência internacional em 4 continentes.",
+                soft_skills_intro: "Os fundamentos da minha abordagem profissional, desenvolvidos ao longo de 15 anos de experiência na América do Norte e do Sul e como expatriada na África Ocidental.",
                 synthesis_title: "Espírito de Síntese",
                 synthesis_desc: "Capacidade de estruturar informações complexas de forma clara e acessível.",
                 collab_title: "Colaboração",
@@ -1266,9 +1349,9 @@
                 crisis_3: "Minimização de impactos negativos",
                 software_title: "Softwares Dominados",
                 intl_title: "Experiência Internacional",
-                brazil_desc: "Experiência profissional na América do Sul, domínio do português e compreensão das dinâmicas culturais latino-americanas.",
-                canada_desc: "Experiência na América do Norte, bilinguismo francês-inglês e conhecimento dos ambientes profissionais norte-americanos.",
-                benin_desc: "Experiência na África Ocidental, adaptação a contextos de trabalho variados e compreensão dos desafios do desenvolvimento.",
+                brazil_desc: "Brasileira de origem, também vivi na Bélgica e no Canadá, o que forjou meu trilinguísmo e minha sensibilidade intercultural natural.",
+                canada_desc: "Baseada no Canadá, integro-me ao mercado profissional quebequense trazendo uma perspectiva internacional única.",
+                benin_desc: "Trabalhei como expatriada na África Ocidental (Benin), como parte de uma missão profissional estruturada em comunicação e gestão documental.",
                 adaptation_title: "Adaptação Cultural",
                 adaptation_desc: "Capacidade de trabalhar em ambientes variados e compreender os códigos locais.",
                 intercultural_title: "Comunicação Intercultural",
@@ -1306,6 +1389,9 @@
             
             // Update HTML lang attribute
             document.documentElement.lang = lang;
+            
+            // Reinitialize icons for dynamic content
+            lucide.createIcons();
         }
 
         // Scroll animations
@@ -1327,13 +1413,15 @@
         // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if(target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+                if(this.getAttribute('href') !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if(target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
                 }
             });
         });
