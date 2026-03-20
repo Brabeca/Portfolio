@@ -28,7 +28,424 @@
         
         .font-serif { font-family: 'Playfair Display', serif; }
         
-        .nav-container {
+        .nav-container <!DOCTYPE html>
+
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Créations | Carla Mathias De Simone</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-bg: #0f172a;
+            --secondary-bg: #1e293b;
+            --accent-gold: #d4af37;
+            --accent-copper: #b87333;
+            --text-light: #f8fafc;
+            --text-muted: #94a3b8;
+        }
+
+```
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+        font-family: 'Inter', sans-serif;
+        background: linear-gradient(135deg, var(--primary-bg) 0%, var(--secondary-bg) 100%);
+        color: var(--text-light);
+        min-height: 100vh;
+    }
+
+    .font-serif { font-family: 'Playfair Display', serif; }
+
+    /* Navigation */
+    .nav-container {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1000;
+        backdrop-filter: blur(20px);
+        background: rgba(15, 23, 42, 0.9);
+        border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+    }
+
+    .nav-link {
+        color: var(--text-muted);
+        text-decoration: none;
+        transition: color 0.3s;
+        padding: 0.5rem 0;
+        position: relative;
+    }
+
+    .nav-link:hover, .nav-link.active { color: var(--accent-gold); }
+
+    .nav-link::after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--accent-gold);
+        transition: width 0.3s;
+    }
+
+    .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+
+    /* Layout */
+    .gallery-container {
+        padding: 100px 2rem 4rem;
+        max-width: 1100px;
+        margin: 0 auto;
+    }
+
+    .page-title {
+        font-family: 'Playfair Display', serif;
+        font-size: 2.5rem;
+        color: var(--accent-gold);
+        text-align: center;
+        margin-bottom: 0.5rem;
+    }
+
+    .page-subtitle {
+        text-align: center;
+        color: var(--text-muted);
+        margin-bottom: 3rem;
+    }
+
+    .back-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--accent-gold);
+        text-decoration: none;
+        margin-bottom: 2rem;
+        transition: all 0.3s;
+        font-size: 0.95rem;
+    }
+
+    .back-btn:hover { transform: translateX(-5px); }
+
+    /* Grille 2×2 */
+    .creations-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2.5rem;
+    }
+
+    /* Boîte par création */
+    .creation-card {
+        background: rgba(30, 41, 59, 0.6);
+        border: 1px solid rgba(212, 175, 55, 0.2);
+        border-radius: 16px;
+        padding: 1.5rem;
+        transition: border-color 0.3s, transform 0.3s;
+    }
+
+    .creation-card:hover {
+        border-color: rgba(212, 175, 55, 0.5);
+        transform: translateY(-3px);
+    }
+
+    .creation-title {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.1rem;
+        color: var(--accent-gold);
+        margin-bottom: 1rem;
+        padding-bottom: 0.6rem;
+        border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+    }
+
+    /* Recto / Verso côte à côte */
+    .creation-images {
+        display: grid;
+        gap: 0.75rem;
+    }
+
+    .creation-images.two-images {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .creation-images.one-image {
+        grid-template-columns: 1fr;
+    }
+
+    .image-wrapper {
+        position: relative;
+        cursor: pointer;
+        border-radius: 8px;
+        overflow: hidden;
+        border: 1px solid rgba(212, 175, 55, 0.1);
+        transition: border-color 0.3s;
+    }
+
+    .image-wrapper:hover {
+        border-color: rgba(212, 175, 55, 0.5);
+    }
+
+    .image-wrapper img {
+        width: 100%;
+        aspect-ratio: 3/4;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.3s;
+    }
+
+    .image-wrapper:hover img {
+        transform: scale(1.03);
+    }
+
+    .image-label {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: linear-gradient(transparent, rgba(15, 23, 42, 0.85));
+        color: var(--text-muted);
+        font-size: 0.75rem;
+        text-align: center;
+        padding: 0.5rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+    }
+
+    /* Lightbox */
+    .lightbox {
+        display: none;
+        position: fixed;
+        z-index: 2000;
+        inset: 0;
+        background: rgba(10, 15, 30, 0.97);
+        backdrop-filter: blur(12px);
+        align-items: center;
+        justify-content: center;
+    }
+
+    .lightbox.active { display: flex; }
+
+    .lightbox img {
+        max-width: min(88vw, 600px);
+        max-height: 80vh;
+        width: auto;
+        height: auto;
+        object-fit: contain;
+        border-radius: 8px;
+    }
+
+    .lightbox-close {
+        position: absolute;
+        top: 20px;
+        right: 32px;
+        color: var(--accent-gold);
+        font-size: 36px;
+        cursor: pointer;
+        line-height: 1;
+        background: none;
+        border: none;
+    }
+
+    .lightbox-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(212, 175, 55, 0.15);
+        border: 1px solid rgba(212, 175, 55, 0.4);
+        color: var(--accent-gold);
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+        cursor: pointer;
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s;
+    }
+
+    .lightbox-btn:hover {
+        background: var(--accent-gold);
+        color: var(--primary-bg);
+    }
+
+    .lightbox-prev { left: 20px; }
+    .lightbox-next { right: 20px; }
+
+    .lightbox-caption {
+        position: absolute;
+        bottom: 24px;
+        left: 50%;
+        transform: translateX(-50%);
+        text-align: center;
+        background: rgba(15, 23, 42, 0.9);
+        padding: 0.75rem 1.75rem;
+        border-radius: 8px;
+        border: 1px solid rgba(212, 175, 55, 0.25);
+        white-space: nowrap;
+    }
+
+    @media (max-width: 700px) {
+        .creations-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+```
+
+</head>
+<body>
+
+```
+<!-- Navigation -->
+<nav class="nav-container">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+        <a href="index.html" class="font-serif text-xl font-bold text-yellow-500">Carla M.D.S.</a>
+        <div class="flex gap-6 items-center">
+            <a href="index.html" class="nav-link">Accueil</a>
+            <a href="portfolio-photos.html" class="nav-link">Photos</a>
+            <a href="portfolio-visuels.html" class="nav-link active" style="color: var(--accent-gold)">Visuels</a>
+            <a href="portfolio-videos.html" class="nav-link">Vidéos</a>
+        </div>
+    </div>
+</nav>
+
+<div class="gallery-container">
+    <a href="index.html" class="back-btn">← Retour à l'accueil</a>
+
+    <h1 class="page-title">Créations</h1>
+    <p class="page-subtitle">Portfolio de créations graphiques</p>
+
+    <div class="creations-grid" id="gallery"></div>
+</div>
+
+<!-- Lightbox -->
+<div id="lightbox" class="lightbox">
+    <button class="lightbox-close" onclick="closeLightbox()">×</button>
+    <button class="lightbox-btn lightbox-prev" onclick="navigateLightbox(-1)">&#10094;</button>
+    <img id="lightbox-img" src="" alt="">
+    <button class="lightbox-btn lightbox-next" onclick="navigateLightbox(1)">&#10095;</button>
+    <div class="lightbox-caption" id="lightbox-caption"></div>
+</div>
+
+<script>
+    const creations = [
+        {
+            title: "Faire-part de naissance",
+            photos: [
+                { src: "documents/Faire part de naissance_1.png", label: "Recto" },
+                { src: "documents/Faire part de naissance_1_verso.png", label: "Verso" }
+            ]
+        },
+        {
+            title: "Faire-part de naissance",
+            photos: [
+                { src: "documents/Faire part de naissance_2.png", label: "Recto" },
+                { src: "documents/Faire part de naissance_2_verso.png", label: "Verso" }
+            ]
+        },
+        {
+            title: "Faire-part de naissance",
+            photos: [
+                { src: "documents/Faire part naissance_3.png", label: "Recto" },
+                { src: "documents/Faire part naissance_3_verso.png", label: "Verso" }
+            ]
+        },
+        {
+            title: "Vœux de nouvel an",
+            photos: [
+                { src: "documents/Voeux de nouvel an.png", label: "Recto" },
+                { src: "documents/Voeux de nouvel an verso.png", label: "Verso" }
+            ]
+        },
+        {
+            title: "Invitation mariage",
+            photos: [
+                { src: "documents/Invitation mariage.png", label: "Recto" },
+                { src: "documents/Invitation mariage 2.png", label: "Verso" }
+            ]
+        },
+        {
+            title: "Carte de remerciement",
+            photos: [
+                { src: "documents/remerciements.png", label: "Carte" }
+            ]
+        }
+    ];
+
+    // Index global pour lightbox
+    const allPhotos = creations.flatMap(c => c.photos.map(p => ({ ...p, group: c.title })));
+    let lightboxIndex = 0;
+
+    function buildGallery() {
+        const container = document.getElementById('gallery');
+
+        creations.forEach((creation, ci) => {
+            const globalStart = creations.slice(0, ci).reduce((acc, c) => acc + c.photos.length, 0);
+            const isTwoImages = creation.photos.length === 2;
+
+            const imagesHTML = creation.photos.map((photo, pi) => `
+                <div class="image-wrapper" onclick="openLightbox(${globalStart + pi})">
+                    <img src="${photo.src}" alt="${photo.label}" loading="lazy">
+                    <div class="image-label">${photo.label}</div>
+                </div>
+            `).join('');
+
+            const card = document.createElement('div');
+            card.className = 'creation-card';
+            card.innerHTML = `
+                <div class="creation-title">${creation.title}</div>
+                <div class="creation-images ${isTwoImages ? 'two-images' : 'one-image'}">
+                    ${imagesHTML}
+                </div>
+            `;
+            container.appendChild(card);
+        });
+    }
+
+    // Lightbox
+    function openLightbox(index) {
+        lightboxIndex = index;
+        updateLightbox();
+        document.getElementById('lightbox').classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+        document.getElementById('lightbox').classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    function navigateLightbox(dir) {
+        lightboxIndex = (lightboxIndex + dir + allPhotos.length) % allPhotos.length;
+        updateLightbox();
+    }
+
+    function updateLightbox() {
+        const p = allPhotos[lightboxIndex];
+        document.getElementById('lightbox-img').src = p.src;
+        document.getElementById('lightbox-caption').innerHTML = `
+            <div style="color:var(--accent-gold);font-size:0.8rem;margin-bottom:4px">${p.group}</div>
+            <strong style="color:var(--text-light)">${p.label}</strong>
+        `;
+    }
+
+    document.addEventListener('keydown', e => {
+        if (!document.getElementById('lightbox').classList.contains('active')) return;
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowLeft') navigateLightbox(-1);
+        if (e.key === 'ArrowRight') navigateLightbox(1);
+    });
+
+    document.getElementById('lightbox').addEventListener('click', e => {
+        if (e.target.id === 'lightbox') closeLightbox();
+    });
+
+    buildGallery();
+</script>
+```
+
+</body>
+</html>
             position: fixed;
             top: 0;
             width: 100%;
