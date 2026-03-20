@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -6,7 +7,6 @@
     <title>Documentation | Carla Mathias De Simone</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         :root {
             --primary-bg: #0f172a;
@@ -16,630 +16,547 @@
             --text-light: #f8fafc;
             --text-muted: #94a3b8;
         }
-        
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body {
-            font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, var(--primary-bg) 0%, var(--secondary-bg) 100%);
-            color: var(--text-light);
-            min-height: 100vh;
-        }
-        
-        .font-serif { font-family: 'Playfair Display', serif; }
-        
-        .nav-container {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            backdrop-filter: blur(20px);
-            background: rgba(15, 23, 42, 0.9);
-            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
-        }
-        
-        .nav-link {
-            color: var(--text-muted);
-            text-decoration: none;
-            transition: color 0.3s;
-            padding: 0.5rem 0;
-            position: relative;
-        }
-        
-        .nav-link:hover, .nav-link.active { color: var(--accent-gold); }
-        
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--accent-gold);
-            transition: width 0.3s;
-        }
-        
-        .nav-link:hover::after, .nav-link.active::after { width: 100%; }
-        
-        .gallery-container {
-            padding: 100px 2rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        /* SECTIONS PAR GROUPE */
-        .photo-section {
-            margin-bottom: 4rem;
-            background: rgba(30, 41, 59, 0.3);
-            border-radius: 20px;
-            padding: 2rem;
-            border: 1px solid rgba(212, 175, 55, 0.1);
-        }
-        
-        .section-header {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-            padding-bottom: 1rem;
-            border-bottom: 2px solid rgba(212, 175, 55, 0.2);
-        }
-        
-        .section-icon {
-            width: 40px;
-            height: 40px;
-            color: var(--accent-gold);
-        }
-        
-        .section-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            color: var(--accent-gold);
-            font-weight: 600;
-        }
-        
-        .section-count {
-            margin-left: auto;
-            color: var(--text-muted);
-            font-size: 0.875rem;
-        }
-        
-        /* CARROUSEL */
-        .carousel {
-            position: relative;
-            overflow: hidden;
-            border-radius: 12px;
-            background: rgba(15, 23, 42, 0.5);
-        }
-        
-        .carousel-track {
-            display: flex;
-            transition: transform 0.5s ease;
-            gap: 1rem;
-        }
-        
-        .carousel-slide {
-            flex: 0 0 calc(20% - 0.8rem);  /* 5 photos par ligne (25% - 25% = 20%) */
-            aspect-ratio: 2/1;  /* Encore plus panoramique */
-            position: relative;
-            border-radius: 8px;
-            overflow: hidden;
-            cursor: pointer;
-        }
 
-        .carousel-slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s;
-        }
-        
-        .carousel-slide:hover img {
-            transform: scale(1.05);
-        }
-        
-        .carousel-nav {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(212, 175, 55, 0.9);
-            border: none;
-            color: var(--primary-bg);
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 18px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s;
-            z-index: 10;
-        }
-        
-        .carousel-nav:hover {
-            background: var(--accent-gold);
-            transform: translateY(-50%) scale(1.1);
-        }
-        
-        .carousel-prev { left: 10px; }
-        .carousel-next { right: 10px; }
-        
-        .carousel-dots {
-            display: flex;
-            justify-content: center;
-            gap: 0.5rem;
-            margin-top: 1rem;
-        }
-        
-        .carousel-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: rgba(212, 175, 55, 0.3);
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        
-        .carousel-dot.active {
-            background: var(--accent-gold);
-            width: 24px;
-            border-radius: 4px;
-        }
-        
-        /* GRILLE SIMPLE POUR PHOTOS UNIQUES */
-        .simple-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 1.5rem;
-        }
-        
-        .simple-item {
-            position: relative;
-            aspect-ratio: 4/3;
-            border-radius: 12px;
-            overflow: hidden;
-            border: 2px solid rgba(212, 175, 55, 0.2);
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        
-        .simple-item:hover {
-            border-color: var(--accent-gold);
-            transform: translateY(-3px);
-        }
-        
-        .simple-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        /* LIGHTBOX */
-        .lightbox {
-            display: none;
-            position: fixed;
-            z-index: 2000;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(15, 23, 42, 0.98);
-            backdrop-filter: blur(10px);
-        }
-        
-        .lightbox.active {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .lightbox-content {
-            max-width: 85%;
-            max-height: 80%;
-            object-fit: contain;
-            border-radius: 8px;
-        }
-        
-        .lightbox-close {
-            position: absolute;
-            top: 20px;
-            right: 40px;
-            color: var(--accent-gold);
-            font-size: 40px;
-            cursor: pointer;
-        }
-        
-        .lightbox-nav {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(212, 175, 55, 0.2);
-            border: 1px solid var(--accent-gold);
-            color: var(--accent-gold);
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 20px;
-        }
-        
-        .lightbox-nav:hover {
-            background: var(--accent-gold);
-            color: var(--primary-bg);
-        }
-        
-        .lightbox-prev { left: 20px; }
-        .lightbox-next { right: 20px; }
-        
-        .lightbox-caption {
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            text-align: center;
-            background: rgba(15, 23, 42, 0.9);
-            padding: 1rem 2rem;
-            border-radius: 8px;
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            max-width: 80%;
-        }
-        
-        .back-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--accent-gold);
-            text-decoration: none;
-            margin-bottom: 2rem;
-            transition: all 0.3s;
-        }
-        
-        .back-btn:hover { transform: translateX(-5px); }
-        
-        /* Responsive */
-        @media (max-width: 1024px) {
-            .carousel-slide {
-                flex: 0 0 calc(25% - 0.75rem);
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .carousel-slide {
-                flex: 0 0 60%;  /* Plus petit sur mobile */
-                margin: 0 auto;
-            }
-    
-            .simple-grid {
-                grid-template-columns: repeat(3, 1fr);  /* 3 colonnes */
-                gap: 0.75rem;
-            }
-    
-            .photo-section {
-                padding: 1rem;
-            }
-    
-            .section-title {
-                font-size: 1.1rem;  /* Titre plus petit */
-            }
-        }
+```
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
-    </style>
+    body {
+        font-family: 'Inter', sans-serif;
+        background: linear-gradient(135deg, var(--primary-bg) 0%, var(--secondary-bg) 100%);
+        color: var(--text-light);
+        min-height: 100vh;
+    }
+
+    .font-serif { font-family: 'Playfair Display', serif; }
+
+    /* Navigation */
+    .nav-container {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1000;
+        backdrop-filter: blur(20px);
+        background: rgba(15, 23, 42, 0.9);
+        border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+    }
+
+    .nav-link {
+        color: var(--text-muted);
+        text-decoration: none;
+        transition: color 0.3s;
+        padding: 0.5rem 0;
+        position: relative;
+    }
+
+    .nav-link:hover, .nav-link.active { color: var(--accent-gold); }
+
+    .nav-link::after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--accent-gold);
+        transition: width 0.3s;
+    }
+
+    .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+
+    /* Page layout */
+    .gallery-container {
+        padding: 100px 2rem 4rem;
+        max-width: 1000px;
+        margin: 0 auto;
+    }
+
+    .page-title {
+        font-family: 'Playfair Display', serif;
+        font-size: 2.5rem;
+        color: var(--accent-gold);
+        text-align: center;
+        margin-bottom: 0.5rem;
+    }
+
+    .page-subtitle {
+        text-align: center;
+        color: var(--text-muted);
+        margin-bottom: 3rem;
+    }
+
+    .back-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--accent-gold);
+        text-decoration: none;
+        margin-bottom: 2rem;
+        transition: all 0.3s;
+        font-size: 0.95rem;
+    }
+
+    .back-btn:hover { transform: translateX(-5px); }
+
+    /* Groupe de photos */
+    .photo-group {
+        margin-bottom: 3.5rem;
+    }
+
+    .group-title {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.15rem;
+        color: var(--accent-gold);
+        margin-bottom: 1rem;
+        padding-bottom: 0.6rem;
+        border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .group-count {
+        font-family: 'Inter', sans-serif;
+        font-size: 0.8rem;
+        color: var(--text-muted);
+        font-weight: 400;
+    }
+
+    /* Carrousel — UNE photo à la fois */
+    .carousel {
+        position: relative;
+        border-radius: 16px;
+        overflow: hidden;
+        background: rgba(15, 23, 42, 0.6);
+        border: 1px solid rgba(212, 175, 55, 0.15);
+    }
+
+    .carousel-track {
+        display: flex;
+        transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .carousel-slide {
+        flex: 0 0 100%;
+        aspect-ratio: 16/9;
+        position: relative;
+        cursor: pointer;
+    }
+
+    .carousel-slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+    .carousel-nav {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(15, 23, 42, 0.75);
+        border: 1px solid rgba(212, 175, 55, 0.4);
+        color: var(--accent-gold);
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        cursor: pointer;
+        font-size: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s;
+        z-index: 10;
+    }
+
+    .carousel-nav:hover {
+        background: var(--accent-gold);
+        color: var(--primary-bg);
+    }
+
+    .carousel-prev { left: 12px; }
+    .carousel-next { right: 12px; }
+
+    .carousel-counter {
+        position: absolute;
+        bottom: 12px;
+        right: 16px;
+        background: rgba(15, 23, 42, 0.8);
+        color: var(--text-muted);
+        font-size: 0.8rem;
+        padding: 3px 10px;
+        border-radius: 20px;
+        border: 1px solid rgba(212, 175, 55, 0.2);
+    }
+
+    /* Photo unique */
+    .single-photo {
+        border-radius: 16px;
+        overflow: hidden;
+        border: 1px solid rgba(212, 175, 55, 0.15);
+        cursor: pointer;
+        transition: border-color 0.3s;
+    }
+
+    .single-photo:hover {
+        border-color: rgba(212, 175, 55, 0.5);
+    }
+
+    .single-photo img {
+        width: 100%;
+        aspect-ratio: 16/9;
+        object-fit: cover;
+        display: block;
+    }
+
+    /* Dots */
+    .carousel-dots {
+        display: flex;
+        justify-content: center;
+        gap: 6px;
+        margin-top: 0.75rem;
+    }
+
+    .dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: rgba(212, 175, 55, 0.25);
+        cursor: pointer;
+        transition: all 0.3s;
+        border: none;
+    }
+
+    .dot.active {
+        background: var(--accent-gold);
+        width: 22px;
+        border-radius: 4px;
+    }
+
+    /* Lightbox */
+    .lightbox {
+        display: none;
+        position: fixed;
+        z-index: 2000;
+        inset: 0;
+        background: rgba(10, 15, 30, 0.97);
+        backdrop-filter: blur(12px);
+        align-items: center;
+        justify-content: center;
+    }
+
+    .lightbox.active { display: flex; }
+
+    .lightbox img {
+        max-width: min(88vw, 700px);
+        max-height: 75vh;
+        width: auto;
+        height: auto;
+        object-fit: contain;
+        border-radius: 8px;
+    }
+
+    .lightbox-close {
+        position: absolute;
+        top: 20px;
+        right: 32px;
+        color: var(--accent-gold);
+        font-size: 36px;
+        cursor: pointer;
+        line-height: 1;
+        background: none;
+        border: none;
+    }
+
+    .lightbox-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(212, 175, 55, 0.15);
+        border: 1px solid rgba(212, 175, 55, 0.4);
+        color: var(--accent-gold);
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+        cursor: pointer;
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s;
+    }
+
+    .lightbox-btn:hover {
+        background: var(--accent-gold);
+        color: var(--primary-bg);
+    }
+
+    .lightbox-prev { left: 20px; }
+    .lightbox-next { right: 20px; }
+
+    .lightbox-caption {
+        position: absolute;
+        bottom: 24px;
+        left: 50%;
+        transform: translateX(-50%);
+        text-align: center;
+        background: rgba(15, 23, 42, 0.9);
+        padding: 0.75rem 1.75rem;
+        border-radius: 8px;
+        border: 1px solid rgba(212, 175, 55, 0.25);
+        white-space: nowrap;
+    }
+
+    @media (max-width: 640px) {
+        .page-title { font-size: 1.75rem; }
+        .carousel-nav { width: 36px; height: 36px; font-size: 14px; }
+    }
+</style>
+```
+
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="nav-container">
-        <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-            <a href="index.html" class="font-serif text-xl font-bold text-yellow-500">Carla M.D.S.</a>
-            <div class="flex gap-6 items-center">
-                <a href="index.html" class="nav-link">Accueil</a>
-                <a href="portfolio-photos.html" class="nav-link active" style="color: var(--accent-gold)">Photos</a>
-                <a href="portfolio-visuels.html" class="nav-link">Visuels</a>
-                <a href="portfolio-videos.html" class="nav-link">Vidéos</a>
-            </div>
+
+```
+<!-- Navigation -->
+<nav class="nav-container">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+        <a href="index.html" class="font-serif text-xl font-bold text-yellow-500">Carla M.D.S.</a>
+        <div class="flex gap-6 items-center">
+            <a href="index.html" class="nav-link">Accueil</a>
+            <a href="portfolio-photos.html" class="nav-link active" style="color: var(--accent-gold)">Photos</a>
+            <a href="portfolio-visuels.html" class="nav-link">Visuels</a>
+            <a href="portfolio-videos.html" class="nav-link">Vidéos</a>
         </div>
-    </nav>
-
-    <!-- Contenu -->
-    <div class="gallery-container">
-        <a href="index.html" class="back-btn">
-            <i data-lucide="arrow-left"></i>
-            <span>Retour à l'accueil</span>
-        </a>
-        
-        <h1 class="text-4xl font-serif text-center mb-2" style="color: var(--accent-gold)">Documentation</h1>
-        <p class="text-center text-gray-400 mb-8">Photos de missions, archives et événements professionnels</p>
-        
-        <!-- Les sections seront générées ici -->
-        <div id="gallery"></div>
     </div>
+</nav>
 
-    <!-- Lightbox -->
-    <div id="lightbox" class="lightbox">
-        <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
-        <button class="lightbox-nav lightbox-prev" onclick="navigateLightbox(-1)">&#10094;</button>
-        <img class="lightbox-content" id="lightbox-img" src="" alt="">
-        <button class="lightbox-nav lightbox-next" onclick="navigateLightbox(1)">&#10095;</button>
-        <div class="lightbox-caption" id="lightbox-caption"></div>
-    </div>
+<div class="gallery-container">
+    <a href="index.html" class="back-btn">← Retour à l'accueil</a>
 
-    <script>
-        // ==========================================
-        // DONNÉES ORGANISÉES PAR GROUPE
-        // ==========================================
-        
-        const photoGroups = [
-            {
-                id: "oxfam-equipe",
-                title: "Équipe OXFAM QC, Bénin 2025",
-                photos: [
-                    { src: "Images/cb8d4475-297a-40b4-bec9-f43cf5f9f4d0 2.jpg", title: "Équipe OXFAM QC" },
-                    { src: "Images/cb8d4475-297a-40b4-bec9-f43cf5f9f4d0.jpg", title: "Équipe OXFAM QC" }
-                ]
-            },
-            {
-                id: "archives-avant",
-                title: "Fonds d'archives OXFAM - Avant traitement",
-                photos: [
-                    { src: "Images/IMG_2555.JPG", title: "Archives avant traitement" },
-                    { src: "Images/IMG_3405.JPG", title: "Archives avant traitement" }
-                ]
-            },
-            {
-                id: "archives-pendant",
-                title: "Fonds d'archives OXFAM - Pendant traitement",
-                photos: [
-                    { src: "Images/IMG_5191.jpeg", title: "Archives pendant traitement" },
-                    { src: "Images/IMG_5190.jpeg", title: "Archives pendant traitement" }
-                ]
-            },
-            {
-                id: "archives-apres",
-                title: "Fonds d'archives OXFAM - Après traitement",
-                photos: [
-                    { src: "Images/IMG_5235.jpeg", title: "Archives après traitement" },
-                    { src: "Images/IMG_5228.jpeg", title: "Archives après traitement" }
-                ]
-            },
-            {
-                id: "jiv-2024",
-                title: "Journée internationale des volontaires, JIV, Bénin 2024",
-                photos: [
-                    { src: "Images/IMG_3974.JPG", title: "JIV 2024" },
-                    { src: "Images/IMG_3969.jpeg", title: "JIV 2024" },
-                    { src: "Images/IMG_5149.jpeg", title: "JIV 2024" },
-                    { src: "Images/33216862-6c4b-4826-b117-ed6480399095.jpg", title: "JIV 2024" }
-                ]
-            },
-            {
-                id: "sear-2024",
-                title: "Suivi-Évaluation des Projets (SEAR) avec des partenaires d'OXFAM QC, Bénin 2024-2025",
-                photos: [
-                    { src: "Images/IMG_3501.JPG", title: "SEAR 2024-2025" },
-                    { src: "Images/IMG_4043.jpeg", title: "SEAR 2024-2025" },
-                    { src: "Images/IMG_4062.jpeg", title: "SEAR 2024-2025" },
-                    { src: "Images/IMG_4430.jpeg", title: "SEAR 2024-2025" },
-                    { src: "Images/IMG_5113.jpeg", title: "SEAR 2024-2025" },
-                    { src: "Images/IMG_5133.jpeg", title: "SEAR 2024-2025" },
-                    { src: "Images/IMG_5139.jpeg", title: "SEAR 2024-2025" },
-                    { src: "Images/58a564c2-f3b2-45c5-968d-30bea96be329.jpeg", title: "SEAR 2024-2025" }
-                ]
-            },
+    <h1 class="page-title">Documentation</h1>
+    <p class="page-subtitle">Photos de missions, archives et événements professionnels</p>
 
-            {
-                id: "ca-suffit",
-                title: "Projet Ça Suffit, OXFAM QC Bénin 2025",
-                photos: [
-                    { src: "Images/f3cadf61-4e6e-4067-a5b4-f35635a4090c.jpg", title: "Projet Ça Suffit" }
-                ]
-            },
-            {
-                id: "afromonde-2025",
-                title: "Kiosque OXFAM QC, Festival Afro-Monde, Montréal 2025",
-                photos: [
-                    { src: "Images/IMG_6198.jpeg", title: "Festival Afro-Montréal" },
-                    { src: "Images/IMG_6197.jpeg", title: "Festival Afro-Montréal" },
-                    { src: "Images/IMG_6191.jpeg", title: "Festival Afro-Montréal" }
-                ]
-            },
-            {
-                id: "rail-2025",
-                title: "RAIL, Bénin 2025",
-                photos: [
-                    { src: "Images/IMG_5960.jpeg", title: "RAIL Bénin" },
-                    { src: "Images/IMG_6074.jpeg", title: "RAIL Bénin" }
-                ]
-            }
-        ];
+    <div id="gallery"></div>
+</div>
 
-        // ==========================================
-        // GÉNÉRATION DES SECTIONS
-        // ==========================================
-        
-        let allPhotos = [];
-        let currentIndex = 0;
-        
-        document.addEventListener('DOMContentLoaded', () => {
-            lucide.createIcons();
-            renderGallery();
-        });
-        
-        function renderGallery() {
-            const container = document.getElementById('gallery');
-            container.innerHTML = '';
-            
-            // Aplatir toutes les photos pour le lightbox
-            allPhotos = photoGroups.flatMap(g => g.photos.map(p => ({...p, group: g.title})));
-            
-            photoGroups.forEach((group, groupIndex) => {
-                const section = document.createElement('div');
-                section.className = 'photo-section';
-                
-                const hasMultiple = group.photos.length > 1;
-                const photoCount = group.photos.length;
-                
-                section.innerHTML = `
-                    <div class="section-header">
-                        <i data-lucide="${group.icon}" class="section-icon"></i>
-                        <h2 class="section-title">${group.title}</h2>
-                        <span class="section-count">${photoCount} photo${photoCount > 1 ? 's' : ''}</span>
+<!-- Lightbox -->
+<div id="lightbox" class="lightbox">
+    <button class="lightbox-close" onclick="closeLightbox()">×</button>
+    <button class="lightbox-btn lightbox-prev" onclick="navigateLightbox(-1)">&#10094;</button>
+    <img id="lightbox-img" src="" alt="">
+    <button class="lightbox-btn lightbox-next" onclick="navigateLightbox(1)">&#10095;</button>
+    <div class="lightbox-caption" id="lightbox-caption"></div>
+</div>
+
+<script>
+    const photoGroups = [
+        {
+            id: "oxfam-equipe",
+            title: "Équipe OXFAM QC, Bénin 2025",
+            photos: [
+                { src: "Images/cb8d4475-297a-40b4-bec9-f43cf5f9f4d0 2.jpg", title: "Équipe OXFAM QC" },
+                { src: "Images/cb8d4475-297a-40b4-bec9-f43cf5f9f4d0.jpg", title: "Équipe OXFAM QC" }
+            ]
+        },
+        {
+            id: "archives-avant",
+            title: "Fonds d'archives OXFAM — Avant traitement",
+            photos: [
+                { src: "Images/IMG_2555.JPG", title: "Archives avant traitement" },
+                { src: "Images/IMG_3405.JPG", title: "Archives avant traitement" }
+            ]
+        },
+        {
+            id: "archives-pendant",
+            title: "Fonds d'archives OXFAM — Pendant traitement",
+            photos: [
+                { src: "Images/IMG_5191.jpeg", title: "Archives pendant traitement" },
+                { src: "Images/IMG_5190.jpeg", title: "Archives pendant traitement" }
+            ]
+        },
+        {
+            id: "archives-apres",
+            title: "Fonds d'archives OXFAM — Après traitement",
+            photos: [
+                { src: "Images/IMG_5235.jpeg", title: "Archives après traitement" },
+                { src: "Images/IMG_5228.jpeg", title: "Archives après traitement" }
+            ]
+        },
+        {
+            id: "jiv-2024",
+            title: "Journée internationale des volontaires, Bénin 2024",
+            photos: [
+                { src: "Images/IMG_3974.JPG", title: "JIV 2024" },
+                { src: "Images/IMG_3969.jpeg", title: "JIV 2024" },
+                { src: "Images/IMG_5149.jpeg", title: "JIV 2024" },
+                { src: "Images/33216862-6c4b-4826-b117-ed6480399095.jpg", title: "JIV 2024" }
+            ]
+        },
+        {
+            id: "sear-2024",
+            title: "Suivi-Évaluation des projets (SEAR), OXFAM QC, Bénin 2024–2025",
+            photos: [
+                { src: "Images/IMG_3501.JPG", title: "SEAR 2024-2025" },
+                { src: "Images/IMG_4043.jpeg", title: "SEAR 2024-2025" },
+                { src: "Images/IMG_4062.jpeg", title: "SEAR 2024-2025" },
+                { src: "Images/IMG_4430.jpeg", title: "SEAR 2024-2025" },
+                { src: "Images/IMG_5113.jpeg", title: "SEAR 2024-2025" },
+                { src: "Images/IMG_5133.jpeg", title: "SEAR 2024-2025" },
+                { src: "Images/IMG_5139.jpeg", title: "SEAR 2024-2025" },
+                { src: "Images/58a564c2-f3b2-45c5-968d-30bea96be329.jpeg", title: "SEAR 2024-2025" }
+            ]
+        },
+        {
+            id: "ca-suffit",
+            title: "Projet Ça Suffit, OXFAM QC, Bénin 2025",
+            photos: [
+                { src: "Images/f3cadf61-4e6e-4067-a5b4-f35635a4090c.jpg", title: "Projet Ça Suffit" }
+            ]
+        },
+        {
+            id: "afromonde-2025",
+            title: "Kiosque OXFAM QC, Festival Afro-Monde, Montréal 2025",
+            photos: [
+                { src: "Images/IMG_6198.jpeg", title: "Festival Afro-Monde" },
+                { src: "Images/IMG_6197.jpeg", title: "Festival Afro-Monde" },
+                { src: "Images/IMG_6191.jpeg", title: "Festival Afro-Monde" }
+            ]
+        },
+        {
+            id: "rail-2025",
+            title: "RAIL, Bénin 2025",
+            photos: [
+                { src: "Images/IMG_5960.jpeg", title: "RAIL Bénin" },
+                { src: "Images/IMG_6074.jpeg", title: "RAIL Bénin" }
+            ]
+        }
+    ];
+
+    // Index global pour lightbox
+    let allPhotos = [];
+    let lightboxIndex = 0;
+
+    // États des carrousels
+    const states = {};
+
+    function buildGallery() {
+        allPhotos = photoGroups.flatMap(g => g.photos.map(p => ({ ...p, group: g.title })));
+
+        const container = document.getElementById('gallery');
+        container.innerHTML = '';
+
+        photoGroups.forEach((group, gi) => {
+            const div = document.createElement('div');
+            div.className = 'photo-group';
+
+            const globalStart = allPhotos.findIndex(p => p.src === group.photos[0].src);
+
+            if (group.photos.length === 1) {
+                div.innerHTML = `
+                    <div class="group-title">
+                        <span>${group.title}</span>
                     </div>
-                    ${hasMultiple ? renderCarousel(group, groupIndex) : renderSingle(group.photos[0])}
+                    <div class="single-photo" onclick="openLightbox(${globalStart})">
+                        <img src="${group.photos[0].src}" alt="${group.photos[0].title}" loading="lazy">
+                    </div>
                 `;
-                
-                container.appendChild(section);
-            });
-            
-            // Initialiser les carrousels
-            initCarousels();
-            lucide.createIcons();
-        }
-        
-        function renderCarousel(group, index) {
-            const slides = group.photos.map((photo, i) => `
-                <div class="carousel-slide" onclick="openLightbox(${getGlobalIndex(group.id, i)})">
-                    <img src="${photo.src}" alt="${photo.title}" loading="lazy">
-                </div>
-            `).join('');
-            
-            return `
-                <div class="carousel" data-carousel="${index}">
-                    <div class="carousel-track" style="transform: translateX(0)">
-                        ${slides}
+            } else {
+                states[gi] = 0;
+
+                const slides = group.photos.map((p, pi) => `
+                    <div class="carousel-slide" onclick="openLightbox(${globalStart + pi})">
+                        <img src="${p.src}" alt="${p.title}" loading="lazy">
                     </div>
-                    <button class="carousel-nav carousel-prev" onclick="moveCarousel(${index}, -1)">&#10094;</button>
-                    <button class="carousel-nav carousel-next" onclick="moveCarousel(${index}, 1)">&#10095;</button>
-                </div>
-                <div class="carousel-dots">
-                    ${group.photos.map((_, i) => `<span class="carousel-dot ${i === 0 ? 'active' : ''}" onclick="goToSlide(${index}, ${i})"></span>`).join('')}
-                </div>
-            `;
-        }
-        
-        function renderSingle(photo) {
-            const globalIdx = allPhotos.findIndex(p => p.src === photo.src);
-            return `
-                <div class="simple-grid">
-                    <div class="simple-item" onclick="openLightbox(${globalIdx})">
-                        <img src="${photo.src}" alt="${photo.title}" loading="lazy">
+                `).join('');
+
+                const dots = group.photos.map((_, i) => `
+                    <button class="dot ${i === 0 ? 'active' : ''}" onclick="goTo(${gi}, ${i})"></button>
+                `).join('');
+
+                div.innerHTML = `
+                    <div class="group-title">
+                        <span>${group.title}</span>
+                        <span class="group-count">${group.photos.length} photos</span>
                     </div>
-                </div>
-            `;
-        }
-        
-        function getGlobalIndex(groupId, photoIndex) {
-            let count = 0;
-            for (const group of photoGroups) {
-                if (group.id === groupId) {
-                    return count + photoIndex;
-                }
-                count += group.photos.length;
+                    <div class="carousel" id="carousel-${gi}">
+                        <div class="carousel-track" id="track-${gi}">${slides}</div>
+                        <button class="carousel-nav carousel-prev" onclick="move(${gi}, -1)">&#10094;</button>
+                        <button class="carousel-nav carousel-next" onclick="move(${gi}, 1)">&#10095;</button>
+                        <div class="carousel-counter" id="counter-${gi}">1 / ${group.photos.length}</div>
+                    </div>
+                    <div class="carousel-dots" id="dots-${gi}">${dots}</div>
+                `;
             }
-            return 0;
-        }
-        
-        // ==========================================
-        // CARROUSEL
-        // ==========================================
-        
-        const carouselStates = {};
-        
-        function initCarousels() {
-            photoGroups.forEach((group, index) => {
-                if (group.photos.length > 1) {
-                    carouselStates[index] = {
-                        current: 0,
-                        total: group.photos.length
-                    };
-                }
-            });
-        }
-        
-        function moveCarousel(carouselIndex, direction) {
-            const state = carouselStates[carouselIndex];
-            const group = photoGroups[carouselIndex];
-            const slidesPerView = window.innerWidth < 768 ? 1 : (window.innerWidth < 1024 ? 2 : 3);
-            const maxSlide = Math.max(0, state.total - slidesPerView);
-            
-            state.current += direction;
-            if (state.current < 0) state.current = 0;
-            if (state.current > maxSlide) state.current = maxSlide;
-            
-            updateCarousel(carouselIndex);
-        }
-        
-        function goToSlide(carouselIndex, slideIndex) {
-            const state = carouselStates[carouselIndex];
-            state.current = slideIndex;
-            updateCarousel(carouselIndex);
-        }
-        
-        function updateCarousel(index) {
-            const track = document.querySelector(`[data-carousel="${index}"] .carousel-track`);
-            const dots = document.querySelectorAll(`[data-carousel="${index}"] + .carousel-dots .carousel-dot`);
-            const state = carouselStates[index];
-            
-            const slideWidth = track.children[0].offsetWidth + 16; // +gap
-            track.style.transform = `translateX(-${state.current * slideWidth}px)`;
-            
-            dots.forEach((dot, i) => {
-                dot.classList.toggle('active', i === state.current);
-            });
-        }
-        
-        // ==========================================
-        // LIGHTBOX
-        // ==========================================
-        
-        function openLightbox(index) {
-            currentIndex = index;
-            updateLightbox();
-            document.getElementById('lightbox').classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-        
-        function closeLightbox() {
-            document.getElementById('lightbox').classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-        
-        function navigateLightbox(direction) {
-            currentIndex += direction;
-            if (currentIndex >= allPhotos.length) currentIndex = 0;
-            if (currentIndex < 0) currentIndex = allPhotos.length - 1;
-            updateLightbox();
-        }
-        
-        function updateLightbox() {
-            const photo = allPhotos[currentIndex];
-            document.getElementById('lightbox-img').src = photo.src;
-            document.getElementById('lightbox-caption').innerHTML = `
-                <div style="color: var(--accent-gold); margin-bottom: 0.5rem; font-size: 0.875rem;">${photo.group}</div>
-                <strong style="color: var(--text-light); font-size: 1.1rem;">${photo.title}</strong>
-            `;
-        }
-        
-        // Events
-        document.addEventListener('keydown', (e) => {
-            const lightbox = document.getElementById('lightbox');
-            if (lightbox.classList.contains('active')) {
-                if (e.key === 'Escape') closeLightbox();
-                if (e.key === 'ArrowLeft') navigateLightbox(-1);
-                if (e.key === 'ArrowRight') navigateLightbox(1);
-            }
+
+            container.appendChild(div);
         });
-        
-        document.getElementById('lightbox').addEventListener('click', (e) => {
-            if (e.target.id === 'lightbox') closeLightbox();
+    }
+
+    function move(gi, dir) {
+        const total = photoGroups[gi].photos.length;
+        states[gi] = (states[gi] + dir + total) % total;
+        updateCarousel(gi);
+    }
+
+    function goTo(gi, index) {
+        states[gi] = index;
+        updateCarousel(gi);
+    }
+
+    function updateCarousel(gi) {
+        const current = states[gi];
+        const total = photoGroups[gi].photos.length;
+        const track = document.getElementById(`track-${gi}`);
+        track.style.transform = `translateX(-${current * 100}%)`;
+
+        document.getElementById(`counter-${gi}`).textContent = `${current + 1} / ${total}`;
+
+        document.querySelectorAll(`#dots-${gi} .dot`).forEach((d, i) => {
+            d.classList.toggle('active', i === current);
         });
-        
-        // Redimensionnement
-        window.addEventListener('resize', () => {
-            Object.keys(carouselStates).forEach(index => {
-                carouselStates[index].current = 0;
-                updateCarousel(index);
-            });
-        });
-    </script>
+    }
+
+    // Lightbox
+    function openLightbox(index) {
+        lightboxIndex = index;
+        updateLightbox();
+        document.getElementById('lightbox').classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+        document.getElementById('lightbox').classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    function navigateLightbox(dir) {
+        lightboxIndex = (lightboxIndex + dir + allPhotos.length) % allPhotos.length;
+        updateLightbox();
+    }
+
+    function updateLightbox() {
+        const p = allPhotos[lightboxIndex];
+        document.getElementById('lightbox-img').src = p.src;
+        document.getElementById('lightbox-caption').innerHTML = `
+            <div style="color:var(--accent-gold);font-size:0.8rem;margin-bottom:4px">${p.group}</div>
+            <strong style="color:var(--text-light)">${p.title}</strong>
+        `;
+    }
+
+    document.addEventListener('keydown', e => {
+        if (!document.getElementById('lightbox').classList.contains('active')) return;
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowLeft') navigateLightbox(-1);
+        if (e.key === 'ArrowRight') navigateLightbox(1);
+    });
+
+    document.getElementById('lightbox').addEventListener('click', e => {
+        if (e.target.id === 'lightbox') closeLightbox();
+    });
+
+    buildGallery();
+</script>
+```
+
 </body>
 </html>
